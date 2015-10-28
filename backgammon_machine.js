@@ -81,9 +81,18 @@ function playerwins(player) {
     var score = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
     var punkte = document.getElementById("punkte").value;
     if (score >= punkte) {
-        alert("GameOver! Player " + player + " hat gewonnen.");
+        alert("GameOver!");
     }
     document.getElementById("scorePlayer" + player).innerHTML = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
     verdoppler = 0;
     verdoppeln();
 }
+
+function test() {
+    return "Test";
+}
+
+function frage() {
+    alert("Klick im rechten oberen Frame links oben und schon kommt der Verdoppler... wieso blick ich nicht, wie ich den onload mit 1 einblenden kann????");
+}
+
