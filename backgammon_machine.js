@@ -87,12 +87,3 @@ function playerwins(player) {
     verdoppler = 0;
     verdoppeln();
 }
-
-function test() {
-    return "Test";
-}
-
-function frage() {
-    alert("Klick im rechten oberen Frame links oben und schon kommt der Verdoppler... wieso blick ich nicht, wie ich den onload mit 1 einblenden kann????");
-}
-
