@@ -28,6 +28,7 @@ function wuerfeln() {
     var res = twoBlanks + pic1 + twoBlanks + pic2 + indicatePasch(wuerfel1, wuerfel2);
     counter++;
     sayWurf();
+    window.scrollTo(0, document.body.scrollHeight);
     if (counter % 2) {
         anzahlWuerfe++;
         return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
