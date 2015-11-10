@@ -12,6 +12,10 @@ var augenWurf1;
 
 var augenWurf2;
 
+var paschsPlayer1 = 0;
+
+var paschsPlayer2 = 0;
+
 var startScorePlayer1 = 0;
 
 function verdoppeln() {
@@ -31,8 +35,14 @@ function wuerfeln() {
     window.scrollTo(0, document.body.scrollHeight);
     if (counter % 2) {
         anzahlWuerfe++;
+        if (wuerfel1 == wuerfel2) {
+          paschsPlayer1 = paschsPlayer1 + 1;
+	}
         return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
     } else {
+        if (wuerfel1 == wuerfel2) {
+          paschsPlayer2 = paschsPlayer2 + 1;
+	}
         return res + br();
     }
 }
@@ -87,4 +97,8 @@ function playerwins(player) {
     document.getElementById("scorePlayer" + player).innerHTML = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
     verdoppler = 0;
     verdoppeln();
+}
+
+function statistic() {
+  alert("Paschs Spieler1: " + paschsPlayer1 + "\nPaschs Spieler2: " + paschsPlayer2);
 }
