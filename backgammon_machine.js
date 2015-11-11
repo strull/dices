@@ -16,8 +16,6 @@ var paschsPlayer1 = 0;
 
 var paschsPlayer2 = 0;
 
-var startScorePlayer1 = 0;
-
 function verdoppeln() {
     document.getElementById("verdoppler").innerHTML = plotVerdoppler();
 }
@@ -36,8 +34,8 @@ function wuerfeln() {
     } else {
       var res = twoBlanks + pic1 + twoBlanks + pic2;
     }
-    if (counter == 0 && wuerfel1 == wuerfel2) {
-      window.location.reload()
+    if (counter === 0 && wuerfel1 == wuerfel2) {
+      window.location.reload();
     }
     counter++;
     sayWurf();
@@ -75,7 +73,7 @@ function blanks(count) {
 
 function plotVerdoppler() {
     verdoppler <<= 1;
-    if (verdoppler == 0) {
+    if (verdoppler === 0) {
         verdoppler = 1;
     }
     if (verdoppler < 9) {
