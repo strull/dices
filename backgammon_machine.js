@@ -73,14 +73,6 @@ function blanks(count) {
     return Array(count + 1).join("&nbsp;");
 }
 
-function indicatePasch(wuerfel1, wuerfel2) {
-    if (wuerfel1 == wuerfel2) {
-        return "";
-    } else {
-        return "";
-    }
-}
-
 function plotVerdoppler() {
     verdoppler <<= 1;
     if (verdoppler == 0) {
