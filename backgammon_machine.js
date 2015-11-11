@@ -89,7 +89,6 @@ function plotVerdoppler() {
     }
 }
 
-
 function playerwins(player) {
     var score = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
     var punkte = document.getElementById("punkte").value;
