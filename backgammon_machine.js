@@ -27,21 +27,30 @@ function wuerfeln() {
     var wuerfel2 = Math.ceil(Math.random() * 6);
     var pic1 = '<img src="' + wuerfel1 + '.png">';
     var pic2 = '<img src="' + wuerfel2 + '.png">';
+    var ppic1 = '<img src="p' +wuerfel1 + '.png">';
+    var ppic2 = '<img src="p' +wuerfel2 + '.png">';
     augenWurf1 = new Audio(wuerfel1 + ".wav");
     augenWurf2 = new Audio(wuerfel2 + ".wav");
-    var res = twoBlanks + pic1 + twoBlanks + pic2 + indicatePasch(wuerfel1, wuerfel2);
+    if (wuerfel1 == wuerfel2) {
+      var res = twoBlanks + ppic1 + twoBlanks + ppic2;
+    } else {
+      var res = twoBlanks + pic1 + twoBlanks + pic2;
+    }
+    if (counter == 0 && wuerfel1 == wuerfel2) {
+      window.location.reload()
+    }
     counter++;
     sayWurf();
     window.scrollTo(0, document.body.scrollHeight);
     if (counter % 2) {
         anzahlWuerfe++;
         if (wuerfel1 == wuerfel2) {
-          paschsPlayer1 = paschsPlayer1 + 1;
+          paschsPlayer1++;
 	}
         return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
     } else {
         if (wuerfel1 == wuerfel2) {
-          paschsPlayer2 = paschsPlayer2 + 1;
+          paschsPlayer2++;
 	}
         return res + br();
     }
@@ -66,9 +75,9 @@ function blanks(count) {
 
 function indicatePasch(wuerfel1, wuerfel2) {
     if (wuerfel1 == wuerfel2) {
-        return "*";
+        return "";
     } else {
-        return "&nbsp;";
+        return "";
     }
 }
 
