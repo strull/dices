@@ -122,18 +122,18 @@ function updateDB() {
       password : 'ausi8r',
       database : 'test'
   });
-
   connection.connect();
-
   var queryString = 'SELECT * FROM test';
-
   connection.query(queryString, function(err, rows, fields) {
     if (err) throw err;
-
     for (var i in rows) {
       console.log('Resp: ', rows[i].field_responsibilities.value);
     }
   });
-
   connection.end();
+}
+
+function test() {
+  this.counter = parent.frames[0].counter;
+  alert (this.counter);
 }
