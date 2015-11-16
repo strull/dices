@@ -12,3 +12,18 @@
 	border-color: transparent;
 	cursor: default;
     }
+    #verdopppler {
+      position: absolute;
+      left: 400px;
+    }
+    #wuerfel {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+    }
+    #statistik {
+      position: absolute;
+      width: 400px;
+      top: 400px;
+      left: 400px;
+    }

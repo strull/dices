@@ -3,7 +3,6 @@
       <head>
          <link rel="stylesheet" type="text/css" href="style.css">
       </head>
-        <script src="bundle.js"></script>
 	<script type="text/javascript" src="backgammon_machine.js"> </script>
 	<body onload=verdoppeln()>
                 <label for="groesse">
@@ -15,9 +14,7 @@
 		<p id="verdoppler"></p>
 		<input class="buttonGrey" type="button" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
 		<input class="buttonGrey" type="button" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)">
-		<input class="buttonGrey" type="button" title="ALT-u" accesskey="u" value="Update DB" onclick="updateDB()">
 		<input class="buttonNormal" type="button" title="ALT-r" accesskey="r" value="Reset Scores" onclick="window.location.reload()"><br><br>
-		<input class="buttonGrey" type="button" title="ALT-x" accesskey="x" value="Test" onclick="test()">
                 Score Player 1:
 		<p id="scorePlayer1"></p>
 		Score Player 2:

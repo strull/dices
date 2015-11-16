@@ -111,29 +111,3 @@ function playerwins(player) {
 function statistic() {
   alert("Paschs Spieler1: " + paschsPlayer1 + "\nPaschs Spieler2: " + paschsPlayer2 + "\nPunkte Spieler1: " + punktePlayer1 + "\nPunkte Spieler2: " + punktePlayer2);
 }
-
-function updateDB() {
-
-  var mysql = require('mysql'); 
-
-  var connection = mysql.createConnection({
-      host     : 'localhost',
-      user     : 'pemo',
-      password : 'ausi8r',
-      database : 'test'
-  });
-  connection.connect();
-  var queryString = 'SELECT * FROM test';
-  connection.query(queryString, function(err, rows, fields) {
-    if (err) throw err;
-    for (var i in rows) {
-      console.log('Resp: ', rows[i].field_responsibilities.value);
-    }
-  });
-  connection.end();
-}
-
-function test() {
-  this.counter = parent.frames[0].counter;
-  alert (this.counter);
-}
