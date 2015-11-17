@@ -122,10 +122,41 @@ function resetGameAndStats() {
   document.getElementById('paschsPlayer2').innerHTML = '';
   document.getElementById('punktePlayer1').innerHTML = '';
   document.getElementById('punktePlayer2').innerHTML = '';
-  punktePlayer1 = punktePlayer2 = anzahlWuerfe = 0;
+  punktePlayer1 = punktePlayer2 = anzahlWuerfe = paschsPlayer1 = paschsPlayer2 = counter = 0;
 }
 
 function resetScore() {
   document.getElementById('scorePlayer1').innerHTML = '';
   document.getElementById('scorePlayer2').innerHTML = '';
+}
+
+function saveResult() {
+  window.URL || (window.URL = window.webkitURL);
+  if(!window.URL){
+    return false;
+  }
+  var timestamp = new Date();
+  var player1 = document.getElementById('player1').value;
+  var player2 = document.getElementById('player2').value;
+  var scorePlayer1 = (parseInt(document.getElementById("scorePlayer1").innerHTML, 10) || 0);
+  var scorePlayer2 = (parseInt(document.getElementById("scorePlayer2").innerHTML, 10) || 0);
+  var myBlob = new Blob([timestamp,' ',player1,' - ',player2,': ',scorePlayer1,':',scorePlayer2], {type : 'plain/text'});
+  // creates the URl for the File
+  var url = URL.createObjectURL(myBlob);
+  // checks wether the browser supports direct downloads
+  if( "download" in document.createElement('a') ){
+    // creates an invisible button to press
+    var a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', "ResultHistory.txt");
+    // Create Click event
+    var clickEvent = document.createEvent ("MouseEvent");
+    clickEvent.initMouseEvent ("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, -1, 0, null);
+    // dispatch click event to simulate download
+    a.dispatchEvent (clickEvent);
+  }
+  else{
+    // fallover, open resource in new tab.
+    window.open(url, '_blank', '');
+  }
 }
