@@ -48,8 +48,10 @@ function wuerfeln() {
     anzahlWuerfe++;
     if (wuerfel1 == wuerfel2) {
       paschsPlayer1++;
+      document.getElementById("paschsPlayer1").innerHTML = paschsPlayer1;
     }
     punktePlayer1 = punktePlayer1 + wuerfel1 + wuerfel2;
+    document.getElementById("punktePlayer1").innerHTML = punktePlayer1;
     if (anzahlWuerfe < 10) {
       return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
     } else {
@@ -58,8 +60,10 @@ function wuerfeln() {
   } else {
     if (wuerfel1 == wuerfel2) {
       paschsPlayer2++;
+      document.getElementById("paschsPlayer2").innerHTML = paschsPlayer2;
     }
     punktePlayer2 = punktePlayer2 + wuerfel1 + wuerfel2;
+    document.getElementById("punktePlayer2").innerHTML = punktePlayer2;
     return res + br();
   }
 }
@@ -110,4 +114,17 @@ function playerwins(player) {
 
 function statistic() {
   alert("Paschs Spieler1: " + paschsPlayer1 + "\nPaschs Spieler2: " + paschsPlayer2 + "\nPunkte Spieler1: " + punktePlayer1 + "\nPunkte Spieler2: " + punktePlayer2);
+}
+
+function resetGameAndStats() {
+  document.getElementById('wurf').innerHTML = '';
+  document.getElementById('paschsPlayer1').innerHTML = '';
+  document.getElementById('paschsPlayer2').innerHTML = '';
+  document.getElementById('punktePlayer1').innerHTML = '';
+  document.getElementById('punktePlayer2').innerHTML = '';
+}
+
+function resetScore() {
+  document.getElementById('scorePlayer1').innerHTML = '';
+  document.getElementById('scorePlayer2').innerHTML = '';
 }
