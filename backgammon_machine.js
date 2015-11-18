@@ -122,6 +122,7 @@ function resetGameAndStats() {
   document.getElementById('paschsPlayer2').innerHTML = '';
   document.getElementById('punktePlayer1').innerHTML = '';
   document.getElementById('punktePlayer2').innerHTML = '';
+  punktePlayer1 = punktePlayer2 = anzahlWuerfe = 0;
 }
 
 function resetScore() {
