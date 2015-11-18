@@ -3,8 +3,6 @@
     }
     .buttonTransparent {
 	position: absolute;
-	left: 47px;
-	top: 67px;
         height: 100px;
         width: 100px;
 	color: transparent;
@@ -25,7 +23,7 @@
     #statistik {
       position: absolute;
       width: 400px;
-      top: 400px;
+      top: 470px;
       left: 400px;
     }
     #wurf {
