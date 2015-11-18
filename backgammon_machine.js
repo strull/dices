@@ -20,6 +20,10 @@ var punktePlayer1 = 0;
 
 var punktePlayer2 = 0;
 
+var scorePlayer1 = 0;
+
+var scorePlayer2 = 0;
+
 function verdoppeln() {
   document.getElementById("verdoppler").innerHTML = plotVerdoppler();
 }
@@ -44,7 +48,9 @@ function wuerfeln() {
   }
   counter++;
   sayWurf();
-  window.scrollTo(0, document.body.scrollHeight);
+  window.setInterval(function() {
+    var elem = document.getElementById('wurf');
+    elem.scrollTop = elem.scrollHeight; }, 8000);
   if (counter % 2) {
     anzahlWuerfe++;
     if (wuerfel1 == wuerfel2) {
@@ -105,12 +111,25 @@ function plotVerdoppler() {
 function playerwins(player) {
   var score = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
   var punkte = document.getElementById("punkte").value;
-  if (score >= punkte) {
-    alert("GameOver!");
+  if (player == 1) {
+    scorePlayer1 = scorePlayer1 + verdoppler;
+    if (scorePlayer1 >= punkte) {
+      alert("Game over!");
+    } else {
+      document.getElementById("scorePlayer" + player).innerHTML = "Score Player1: " + scorePlayer1;
+      verdoppler = 0;
+      verdoppeln();
+    }
+  } else {
+    scorePlayer2 = scorePlayer2 + verdoppler;
+    if (scorePlayer2 >= punkte) {
+      alert("Game over!");
+    } else {
+      document.getElementById("scorePlayer" + player).innerHTML = "Score Player2: " + scorePlayer2;
+      verdoppler = 0;
+      verdoppeln();
+    }
   }
-  document.getElementById("scorePlayer" + player).innerHTML = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
-  verdoppler = 0;
-  verdoppeln();
 }
 
 function resetGameAndStats() {
@@ -125,6 +144,7 @@ function resetGameAndStats() {
 function resetScore() {
   document.getElementById('scorePlayer1').innerHTML = '';
   document.getElementById('scorePlayer2').innerHTML = '';
+  scorePlayer1 = scorePlayer2 = 0;
 }
 
 function saveResult() {
@@ -159,13 +179,13 @@ function saveResult() {
 }
 
 function initStatistics() {
-      document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
-      document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
-      document.getElementById("punktePlayer1").innerHTML = 'Augen Player1: ' + punktePlayer1;
-      document.getElementById("punktePlayer2").innerHTML = 'Augen Player2: ' + punktePlayer2;
+  document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
+  document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
+  document.getElementById("punktePlayer1").innerHTML = 'Augen Player1: ' + punktePlayer1;
+  document.getElementById("punktePlayer2").innerHTML = 'Augen Player2: ' + punktePlayer2;
 }
 
 function initScore() {
-      document.getElementById("scorePlayer1").innerHTML = 'Score Player1: 0';
-      document.getElementById("scorePlayer2").innerHTML = 'Score Player2: 0';
+  document.getElementById("scorePlayer1").innerHTML = 'Score Player1: ' + scorePlayer1;
+  document.getElementById("scorePlayer2").innerHTML = 'Score Player2: ' + scorePlayer2;
 }
