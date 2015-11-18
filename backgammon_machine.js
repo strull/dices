@@ -31,12 +31,13 @@ function wuerfeln() {
   var pic2 = '<img src="' + wuerfel2 + '.png">';
   var ppic1 = '<img src="p' +wuerfel1 + '.png">';
   var ppic2 = '<img src="p' +wuerfel2 + '.png">';
+  var res;
   augenWurf1 = new Audio(wuerfel1 + ".wav");
   augenWurf2 = new Audio(wuerfel2 + ".wav");
   if (wuerfel1 == wuerfel2) {
-    var res = twoBlanks + ppic1 + twoBlanks + ppic2;
+    res = twoBlanks + ppic1 + twoBlanks + ppic2;
   } else {
-    var res = twoBlanks + pic1 + twoBlanks + pic2;
+    res = twoBlanks + pic1 + twoBlanks + pic2;
   }
   if (counter === 0 && wuerfel1 == wuerfel2) {
     window.location.reload();
@@ -97,7 +98,7 @@ function plotVerdoppler() {
   } else if (verdoppler >= 100 && verdoppler <= 999) {
     return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="40" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="54" y="85">' + verdoppler + "</text></g></svg>";
   } else {
-    return "So weit verdoppeln ist verboten... ein W�rfel explodiert...<br>" + '<img src="wuerfel_explodiert.jpg">';
+    return "So weit verdoppeln ist verboten... ein Würfel explodiert...<br>" + '<img src="wuerfel_explodiert.jpg">';
   }
 }
 
@@ -107,8 +108,7 @@ function playerwins(player) {
   if (score >= punkte) {
     alert("GameOver!");
   }
-  var zwischenstand = document.getElementById("scorePlayer" + player).innerHTML = (parseInt(document.getElementById("scorePlayer" + player), 10) || 0) + verdoppler;
-  document.getElementById("scorePlayer" + player).innerHTML = "Score Player" + player + ": " + zwischenstand;
+  document.getElementById("scorePlayer" + player).innerHTML = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
   verdoppler = 0;
   verdoppeln();
 }
