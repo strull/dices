@@ -107,13 +107,10 @@ function playerwins(player) {
   if (score >= punkte) {
     alert("GameOver!");
   }
-  document.getElementById("scorePlayer" + player).innerHTML = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
+  var zwischenstand = document.getElementById("scorePlayer" + player).innerHTML = (parseInt(document.getElementById("scorePlayer" + player), 10) || 0) + verdoppler;
+  document.getElementById("scorePlayer" + player).innerHTML = "Score Player" + player + ": " + zwischenstand;
   verdoppler = 0;
   verdoppeln();
-}
-
-function statistic() {
-  alert("Paschs Spieler1: " + paschsPlayer1 + "\nPaschs Spieler2: " + paschsPlayer2 + "\nPunkte Spieler1: " + punktePlayer1 + "\nPunkte Spieler2: " + punktePlayer2);
 }
 
 function resetGameAndStats() {
