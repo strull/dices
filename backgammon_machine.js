@@ -48,10 +48,10 @@ function wuerfeln() {
     anzahlWuerfe++;
     if (wuerfel1 == wuerfel2) {
       paschsPlayer1++;
-      document.getElementById("paschsPlayer1").innerHTML = paschsPlayer1;
+      document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
     }
     punktePlayer1 = punktePlayer1 + wuerfel1 + wuerfel2;
-    document.getElementById("punktePlayer1").innerHTML = punktePlayer1;
+    document.getElementById("punktePlayer1").innerHTML = 'Augen Player1: ' + punktePlayer1;
     if (anzahlWuerfe < 10) {
       return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
     } else {
@@ -60,10 +60,10 @@ function wuerfeln() {
   } else {
     if (wuerfel1 == wuerfel2) {
       paschsPlayer2++;
-      document.getElementById("paschsPlayer2").innerHTML = paschsPlayer2;
+      document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
     }
     punktePlayer2 = punktePlayer2 + wuerfel1 + wuerfel2;
-    document.getElementById("punktePlayer2").innerHTML = punktePlayer2;
+    document.getElementById("punktePlayer2").innerHTML = 'Augen Player2: ' + punktePlayer2;
     return res + br();
   }
 }
@@ -159,4 +159,16 @@ function saveResult() {
     // fallover, open resource in new tab.
     window.open(url, '_blank', '');
   }
+}
+
+function initStatistics() {
+      document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
+      document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
+      document.getElementById("punktePlayer1").innerHTML = 'Augen Player1: ' + punktePlayer1;
+      document.getElementById("punktePlayer2").innerHTML = 'Augen Player2: ' + punktePlayer2;
+}
+
+function initScore() {
+      document.getElementById("scorePlayer1").innerHTML = 'Score Player1: 0';
+      document.getElementById("scorePlayer2").innerHTML = 'Score Player2: 0';
 }
