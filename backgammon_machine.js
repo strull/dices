@@ -98,7 +98,7 @@ function plotVerdoppler() {
   } else if (verdoppler >= 100 && verdoppler <= 999) {
     return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="40" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="54" y="85">' + verdoppler + "</text></g></svg>";
   } else {
-    return "So weit verdoppeln ist verboten... ein WÃ¼rfel explodiert...<br>" + '<img src="wuerfel_explodiert.jpg">';
+    return "So weit verdoppeln ist verboten... ein Würfel explodiert...<br>" + '<img src="wuerfel_explodiert.jpg">';
   }
 }
 
