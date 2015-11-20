@@ -29,6 +29,14 @@ function verdoppeln() {
 }
 
 function wuerfeln() {
+  document.getElementById('wurf').innerHTML += wurf();
+  if (counter > 32) {
+    var elem = document.getElementById('wurf');
+    elem.scrollTop = elem.scrollHeight;
+  }
+}
+
+function wurf() {
   var wuerfel1 = Math.ceil(Math.random() * 6);
   var wuerfel2 = Math.ceil(Math.random() * 6);
   var pic1 = '<img src="' + wuerfel1 + '.png">';
@@ -44,13 +52,10 @@ function wuerfeln() {
     res = twoBlanks + pic1 + twoBlanks + pic2;
   }
   if (counter === 0 && wuerfel1 == wuerfel2) {
-    window.location.reload();
+    return wurf();
   }
   counter++;
   sayWurf();
-  window.setInterval(function() {
-    var elem = document.getElementById('wurf');
-    elem.scrollTop = elem.scrollHeight; }, 8000);
   if (counter % 2) {
     anzahlWuerfe++;
     if (wuerfel1 == wuerfel2) {
