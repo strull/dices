@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+use CGI qw(:all);
+use DBI;
+use DateTime;
+use DateTime::Format::MySQL;
+
+my $dt = DateTime->now;
+my $dt_mysql = DateTime::Format::MySQL->parse_datetime($dt);
+my($q,$player1,$player2);
+$q = CGI->new();
+$player1 = $q -> param('player1');
+$player2 = $q -> param('player2');
+# $scorePlayer1 = $q -> param('scorePlayer1');
+
+my $driver   = "SQLite"; 
+my $database = "backgammon.db";
+my $dsn = "DBI:$driver:dbname=$database";
+my $userid = "";
+my $password = "";
+my $dbh = DBI->connect($dsn, $userid, $password, { RaiseError => 1 }) or die $DBI::errstr;
+
+my $SQL_Statement = 'INSERT INTO results (DATETIME, player1, player2) VALUES (?,?,?)';
+my $Abfrage = $dbh->prepare($SQL_Statement);
+$Abfrage->execute($dt_mysql,$player1,$player2);
+$Abfrage->finish();
