@@ -151,6 +151,9 @@ function resetScore() {
   document.getElementById('scorePlayer1').innerHTML = '';
   document.getElementById('scorePlayer2').innerHTML = '';
   scorePlayer1 = scorePlayer2 = 0;
+  verdoppler = 0;
+  verdoppeln();
+
 }
 
 function saveResult() {

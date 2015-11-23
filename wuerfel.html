@@ -9,12 +9,11 @@
         <link rel="stylesheet" type="text/css" href="style.css">
 	<body onload=verdoppeln();initStatistics();initScore()>
 	<div class="head" name="head" id="head">
-	  <!--<form action="http://localhost/cgi-bin/testInsert2.pl" method="post" enctype="application/x-www-form-urlencoded" name="test" target="_blank">-->
 	  <form action="http://localhost/wuerfel/testInsertSqlite.pl" method="post" enctype="application/x-www-form-urlencoded" name="strullboss" target="_blank" >
 		<b><span style="font-size: 24px; vertical-align: baseline">Backgammon Machine </span></b>&copy;E1, E8 (2016)<br><br>
 		<img src="wuerfel.jpg" width="138" height="120" alt="Würfel"><br><br>
 		<button type="button" title="ALT-w" accesskey="w" onclick="wuerfeln()"><u>W</u>ürfeln</button>
-		<button type="button" title="ALT-n" accesskey="n" onclick="resetGameAndStats();initStatistics()"><u>N</u>eues Spiel</button><br><br>
+		<button type="button" title="ALT-n" accesskey="n" onclick="resetGameAndStats();initStatistics();resetScore();initScore()"><u>N</u>eues Spiel</button><br><br>
 		Wurf&nbsp;&nbsp;
                 <input name="player1" id="player1" type="text" size="10" min="1" max="10" step="1" value="strull">
                 <input name="player2" id="player2" type="text" size="10" min="1" max="10" step="1" value="pemo">
@@ -29,19 +28,17 @@
                 <input id="punkte" type="number" min="1" max="25" step="1" value="11">
                 Punkte
                 </label>
-		  <!--<input name="spalte1" type="text" id="spalte1" size="30"></input><br>-->
-		  <!--<input name="spalte2" type="text" id="spalte2" size="30"></input><br>-->
-		  <!--<input name="submit" type="submit" value="submit"></input>-->
 		<input class="buttonTransparent" type="button" title="ALT-v" accesskey="v" style="position: absolute; left: 41px; top: 71px; color: transparent; background-color: transparent; border-color: transparent; cursor: default;" value="" onclick="verdoppeln()">
 		<p id="verdoppler"></p>
 		<input class="buttonGrey" type="button" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
 		<input class="buttonGrey" type="button" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)">
 		<input class="buttonNormal" type="button" title="ALT-r" accesskey="r" value="Reset Scores" onclick="resetScore();initScore()">
-		<input class="buttonNormal" type="button" title="ALT-s" accesskey="s" value="Save Result" onclick="saveResult()"><br><br>
+		<input name="submit" type="submit" value="Save Result"></input><br><br>
 		<img src="score.jpg" width="100" height="100" alt="Würfel">
 		<p id="scorePlayer1"></p>
 		<input type="hidden" name="scorePlayer1hidden" >
 		<p id="scorePlayer2"></p>
+		<input type="hidden" name="scorePlayer2hidden" >
 	      </div>
 	<div class="statistik" name="statistik" id="statistik">
 		<img src="Statistik.jpg" width="138" height="120" alt="Würfel">
@@ -49,7 +46,6 @@
                 <p id="paschsPlayer2"></p>
                 <p id="punktePlayer1"></p>
                 <p id="punktePlayer2"></p>
-		<input name="submit" type="submit" value="submit"></input>
 		</form>
 	</div>
 	</body>

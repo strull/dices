@@ -11,6 +11,7 @@ $q = CGI->new();
 $player1 = $q -> param('player1');
 $player2 = $q -> param('player2');
 $scorePlayer1 = $q -> param('scorePlayer1hidden');
+$scorePlayer2 = $q -> param('scorePlayer2hidden');
 
 my $driver   = "SQLite"; 
 my $database = "backgammon.db";
@@ -19,10 +20,10 @@ my $userid = "";
 my $password = "";
 my $dbh = DBI->connect($dsn, $userid, $password, { RaiseError => 1 }) or die $DBI::errstr;
 
-my $SQL_Statement = 'INSERT INTO results (DATETIME, player1, player2, scorePlayer1) VALUES (?,?,?,?)';
+my $SQL_Statement = 'INSERT INTO results (DATETIME, player1, player2, scorePlayer1, scorePlayer2) VALUES (?,?,?,?,?)';
 my $Abfrage = $dbh->prepare($SQL_Statement);
-$Abfrage->execute($dt_mysql,$player1,$player2,$scorePlayer1);
+$Abfrage->execute($dt_mysql,$player1,$player2,$scorePlayer1,$scorePlayer2);
 $Abfrage->finish();
 
 print $q->header('text/plain');
-print "Results  so far:\n", `sqlite3 backgammon.db "select * from results"`;
+print "Results so far:\n", `sqlite3 backgammon.db "select * from results"`;
