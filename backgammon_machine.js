@@ -37,8 +37,8 @@ function wuerfeln() {
 }
 
 function wurf() {
-  wuerfel1 = Math.ceil(Math.random() * 6);
-  wuerfel2 = Math.ceil(Math.random() * 6);
+  var wuerfel1 = Math.ceil(Math.random() * 6);
+  var wuerfel2 = Math.ceil(Math.random() * 6);
   var pic1 = '<img src="' + wuerfel1 + '.png">';
   var pic2 = '<img src="' + wuerfel2 + '.png">';
   var ppic1 = '<img src="p' +wuerfel1 + '.png">';
