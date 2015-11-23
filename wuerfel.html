@@ -6,6 +6,7 @@
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	</head>
 	<script type="text/javascript" src="backgammon_machine.js"> </script>
+	<script src="Chart.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
 	<body onload=verdoppeln();initStatistics();initScore()>
 	<div class="head" name="head" id="head">
@@ -33,6 +34,7 @@
 		<input class="buttonGrey" type="button" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
 		<input class="buttonGrey" type="button" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)">
 		<input class="buttonNormal" type="button" title="ALT-r" accesskey="r" value="Reset Scores" onclick="resetScore();initScore()">
+		<input class="buttonNormal" type="button" title="ALT-r" accesskey="r" value="Draw Chart" onclick="drawChart()">
 		<input name="submit" type="submit" value="Save Result"></input><br><br>
 		<img src="score.jpg" width="100" height="100" alt="Würfel">
 		<p id="scorePlayer1"></p>
@@ -46,6 +48,7 @@
                 <p id="paschsPlayer2"></p>
                 <p id="punktePlayer1"></p>
                 <p id="punktePlayer2"></p>
+                <canvas id="chart" width="400" height="400"></canvas>
 		</form>
 	</div>
 	</body>

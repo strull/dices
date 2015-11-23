@@ -37,8 +37,8 @@ function wuerfeln() {
 }
 
 function wurf() {
-  var wuerfel1 = Math.ceil(Math.random() * 6);
-  var wuerfel2 = Math.ceil(Math.random() * 6);
+  wuerfel1 = Math.ceil(Math.random() * 6);
+  wuerfel2 = Math.ceil(Math.random() * 6);
   var pic1 = '<img src="' + wuerfel1 + '.png">';
   var pic2 = '<img src="' + wuerfel2 + '.png">';
   var ppic1 = '<img src="p' +wuerfel1 + '.png">';
@@ -197,4 +197,39 @@ function initStatistics() {
 function initScore() {
   document.getElementById("scorePlayer1").innerHTML = 'Score Player1: ' + scorePlayer1;
   document.getElementById("scorePlayer2").innerHTML = 'Score Player2: ' + scorePlayer2;
+}
+
+function drawChart() {
+  var canvas = document.getElementById('chart'),
+      ctx = canvas.getContext('2d'),
+      startingData = {
+	labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+	datasets: [
+	{
+	  fillColor: "rgba(220,220,220,0.2)",
+	  strokeColor: "rgba(220,220,220,1)",
+	  pointColor: "rgba(220,220,220,1)",
+	  pointStrokeColor: "#fff",
+	  data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+	},
+	{
+	  fillColor: "rgba(151,187,205,0.2)",
+	  strokeColor: "rgba(151,187,205,1)",
+	  pointColor: "rgba(151,187,205,1)",
+	  pointStrokeColor: "#fff",
+	  data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+	}
+	]
+      },
+      latestLabel = startingData.labels[6];
+
+  // Reduce the animation steps for demo clarity.
+  var myLiveChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
+
+  setInterval(function(){
+    // Add two random numbers for each dataset
+    myLiveChart.addData([punktePlayer1, punktePlayer2], ++latestLabel);
+    // Remove the first point so we dont just add values forever
+    myLiveChart.removeData();
+  }, 5000);
 }
