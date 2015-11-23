@@ -10,7 +10,7 @@
 	<body onload=verdoppeln();initStatistics();initScore()>
 	<div class="head" name="head" id="head">
 	  <!--<form action="http://localhost/cgi-bin/testInsert2.pl" method="post" enctype="application/x-www-form-urlencoded" name="test" target="_blank">-->
-	  <form action="http://localhost/cgi-bin/testInsertSqlite.pl" method="post" enctype="application/x-www-form-urlencoded" name="test" target="_blank">
+	  <form action="http://localhost/wuerfel/testInsertSqlite.pl" method="post" enctype="application/x-www-form-urlencoded" name="strullboss" target="_blank" >
 		<b><span style="font-size: 24px; vertical-align: baseline">Backgammon Machine </span></b>&copy;E1, E8 (2016)<br><br>
 		<img src="wuerfel.jpg" width="138" height="120" alt="Würfel"><br><br>
 		<button type="button" title="ALT-w" accesskey="w" onclick="wuerfeln()"><u>W</u>ürfeln</button>
@@ -40,6 +40,7 @@
 		<input class="buttonNormal" type="button" title="ALT-s" accesskey="s" value="Save Result" onclick="saveResult()"><br><br>
 		<img src="score.jpg" width="100" height="100" alt="Würfel">
 		<p id="scorePlayer1"></p>
+		<input type="hidden" name="scorePlayer1hidden" >
 		<p id="scorePlayer2"></p>
 	      </div>
 	<div class="statistik" name="statistik" id="statistik">

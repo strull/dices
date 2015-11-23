@@ -122,6 +122,7 @@ function playerwins(player) {
       alert("Game over!");
     } else {
       document.getElementById("scorePlayer" + player).innerHTML = "Score Player1: " + scorePlayer1;
+      document.strullboss.scorePlayer1hidden.value = scorePlayer1;
       verdoppler = 0;
       verdoppeln();
     }
