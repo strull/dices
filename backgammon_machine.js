@@ -24,7 +24,9 @@ var scorePlayer1 = 0;
 
 var scorePlayer2 = 0;
 
-var myLiveChart;
+var eyeChart;
+
+var scoreChart;
 
 function verdoppeln() {
   document.getElementById("verdoppler").innerHTML = plotVerdoppler();
@@ -68,7 +70,7 @@ function wurf() {
     }
     punktePlayer1 = punktePlayer1 + (wuerfel1 + wuerfel2) * pasch;
     document.getElementById("punktePlayer1").innerHTML = 'Augen Player1: ' + punktePlayer1;
-    myLiveChart.addData([punktePlayer1, punktePlayer2], anzahlWuerfe);
+    eyeChart.addData([punktePlayer1, punktePlayer2], anzahlWuerfe);
     if (anzahlWuerfe < 10) {
       return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
     } else {
@@ -82,8 +84,8 @@ function wurf() {
     }
     punktePlayer2 = punktePlayer2 + (wuerfel1 + wuerfel2) * pasch;
     document.getElementById("punktePlayer2").innerHTML = 'Augen Player2: ' + punktePlayer2;
-    myLiveChart.datasets[1].points[anzahlWuerfe].value = punktePlayer2;
-    myLiveChart.update();
+    eyeChart.datasets[1].points[anzahlWuerfe].value = punktePlayer2;
+    eyeChart.update();
     return res + br();
   }
 }
@@ -124,6 +126,7 @@ function plotVerdoppler() {
 function playerwins(player) {
   var score = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
   var punkte = document.getElementById("punkte").value;
+  scoreChart.addData([scorePlayer1, scorePlayer2]);
   if (player == 1) {
     scorePlayer1 = scorePlayer1 + verdoppler;
     if (scorePlayer1 >= punkte) {
@@ -176,21 +179,23 @@ function initScore() {
   document.getElementById("scorePlayer2").innerHTML = 'Score Player2: ' + scorePlayer2;
 }
 
-function drawChart() {
-  var canvas = document.getElementById('chart'),
+function drawEyeChart() {
+  var canvas = document.getElementById('eyeChart'),
       ctx = canvas.getContext('2d'),
       startingData = {
                    labels: [0],
                    datasets: [
                 {
-fillColor: "rgba(220,220,220,0.2)",
+                   label: "Augen Player1",
+                   fillColor: "rgba(220,220,220,0.2)",
                    strokeColor: "rgba(220,220,220,1)",
                    pointColor: "rgba(220,220,220,1)",
                    pointStrokeColor: "#fff",
                    data: [0]
                 },
                 {
-fillColor: "rgba(151,187,205,0.2)",
+                   label: "Augen Player2",
+                   fillColor: "rgba(151,187,205,0.2)",
                    strokeColor: "rgba(151,187,205,1)",
                    pointColor: "rgba(151,187,205,1)",
                    pointStrokeColor: "#fff",
@@ -199,5 +204,33 @@ fillColor: "rgba(151,187,205,0.2)",
                 ]
       },
       latestLabel = startingData.labels[0];
-  myLiveChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
+  eyeChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
+}
+
+function drawScoreChart() {
+  var canvas = document.getElementById('scoreChart'),
+      ctx = canvas.getContext('2d'),
+      startingData = {
+                   labels: [0],
+                   datasets: [
+                {
+                   label: "Score Player1",
+                   fillColor: "rgba(220,220,220,0.2)",
+                   strokeColor: "rgba(220,220,220,1)",
+                   highlightFill: "rgba(220,220,220,0.75)",
+                   highlightStroke: "rgba(220,220,220,1)",
+                   data: [0]
+                },
+                {
+                   label: "Score Player2",
+                   fillColor: "rgba(151,187,205,0.2)",
+                   strokeColor: "rgba(151,187,205,1)",
+                   highlightFill: "rgba(220,220,220,0.75)",
+                   highlightStroke: "rgba(220,220,220,1)",
+                   data: [0]
+                }
+                ]
+      },
+      latestLabel = startingData.labels[0];
+  scoreChart = new Chart(ctx).Bar(startingData, {animationSteps: 15});
 }
