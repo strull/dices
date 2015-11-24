@@ -28,6 +28,8 @@ var eyeChart;
 
 var scoreChart;
 
+var round = 0;
+
 function verdoppeln() {
   document.getElementById("verdoppler").innerHTML = plotVerdoppler();
 }
@@ -69,7 +71,6 @@ function wurf() {
       document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
     }
     punktePlayer1 = punktePlayer1 + (wuerfel1 + wuerfel2) * pasch;
-    document.getElementById("punktePlayer1").innerHTML = 'Augen Player1: ' + punktePlayer1;
     eyeChart.addData([punktePlayer1, punktePlayer2], anzahlWuerfe);
     if (anzahlWuerfe < 10) {
       return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
@@ -83,7 +84,6 @@ function wurf() {
       document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
     }
     punktePlayer2 = punktePlayer2 + (wuerfel1 + wuerfel2) * pasch;
-    document.getElementById("punktePlayer2").innerHTML = 'Augen Player2: ' + punktePlayer2;
     eyeChart.datasets[1].points[anzahlWuerfe].value = punktePlayer2;
     eyeChart.update();
     return res + br();
@@ -102,7 +102,7 @@ function sayWurf2() {
 function br() {
   return "<br>";
 }
-
+ 
 function blanks(count) {
   return Array(count + 1).join("&nbsp;");
 }
@@ -113,11 +113,11 @@ function plotVerdoppler() {
     verdoppler = 1;
   }
   if (verdoppler < 9) {
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="40" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="75" y="85">' + verdoppler + "</text></g></svg>";
+    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="100" y="85">' + verdoppler + "</text></g></svg>";
   } else if (verdoppler >= 10 && verdoppler <= 99) {
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="40" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="65" y="85">' + verdoppler + "</text></g></svg>";
+    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="90" y="85">' + verdoppler + "</text></g></svg>";
   } else if (verdoppler >= 100 && verdoppler <= 999) {
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="40" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="54" y="85">' + verdoppler + "</text></g></svg>";
+    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="79" y="85">' + verdoppler + "</text></g></svg>";
   } else {
     return "So weit verdoppeln ist verboten... ein Würfel explodiert...<br>" + '<img src="wuerfel_explodiert.jpg">';
   }
@@ -126,13 +126,11 @@ function plotVerdoppler() {
 function playerwins(player) {
   var score = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
   var punkte = document.getElementById("punkte").value;
-  scoreChart.addData([scorePlayer1, scorePlayer2]);
   if (player == 1) {
     scorePlayer1 = scorePlayer1 + verdoppler;
     if (scorePlayer1 >= punkte) {
       alert("Game over!");
     } else {
-      document.getElementById("scorePlayer" + player).innerHTML = "Score Player1: " + scorePlayer1;
       document.strullboss.scorePlayer1hidden.value = scorePlayer1;
       verdoppler = 0;
       verdoppeln();
@@ -140,13 +138,20 @@ function playerwins(player) {
   } else {
     scorePlayer2 = scorePlayer2 + verdoppler;
     if (scorePlayer2 >= punkte) {
-      alert("Game over!");
+     alert("Game over!");
     } else {
-      document.getElementById("scorePlayer" + player).innerHTML = "Score Player2: " + scorePlayer2;
       document.strullboss.scorePlayer2hidden.value = scorePlayer2;
       verdoppler = 0;
       verdoppeln();
     }
+  }
+  round = round + 1;
+  if (round == 1){
+    scoreChart.datasets[0].bars[0].value = scorePlayer1;
+    scoreChart.datasets[1].bars[0].value = scorePlayer2;
+    scoreChart.update();
+  } else {
+    scoreChart.addData([scorePlayer1, scorePlayer2], "round " + round);
   }
 }
 
@@ -159,26 +164,27 @@ function resetGameAndStats() {
   punktePlayer1 = punktePlayer2 = anzahlWuerfe = paschsPlayer1 = paschsPlayer2 = counter = 0;
 }
 
+ 
+
 function resetScore() {
   document.getElementById('scorePlayer1').innerHTML = '';
   document.getElementById('scorePlayer2').innerHTML = '';
   scorePlayer1 = scorePlayer2 = 0;
   verdoppler = 0;
   verdoppeln();
+  if (round > 0){
+    for (i=0;i<round;i++){
+      scoreChart.removeData();
+    }
+    round = 0;
+  }
 }
 
 function initStatistics() {
   document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
   document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
-  document.getElementById("punktePlayer1").innerHTML = 'Augen Player1: ' + punktePlayer1;
-  document.getElementById("punktePlayer2").innerHTML = 'Augen Player2: ' + punktePlayer2;
 }
-
-function initScore() {
-  document.getElementById("scorePlayer1").innerHTML = 'Score Player1: ' + scorePlayer1;
-  document.getElementById("scorePlayer2").innerHTML = 'Score Player2: ' + scorePlayer2;
-}
-
+ 
 function drawEyeChart() {
   var canvas = document.getElementById('eyeChart'),
       ctx = canvas.getContext('2d'),
@@ -211,7 +217,7 @@ function drawScoreChart() {
   var canvas = document.getElementById('scoreChart'),
       ctx = canvas.getContext('2d'),
       startingData = {
-                   labels: [0],
+                   labels: ["round " + 1],
                    datasets: [
                 {
                    label: "Score Player1",
