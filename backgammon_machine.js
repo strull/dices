@@ -24,6 +24,8 @@ var scorePlayer1 = 0;
 
 var scorePlayer2 = 0;
 
+var myLiveChart;
+
 function verdoppeln() {
   document.getElementById("verdoppler").innerHTML = plotVerdoppler();
 }
@@ -56,14 +58,17 @@ function wurf() {
   }
   counter++;
   sayWurf();
+  var pasch = 1;
   if (counter % 2) {
     anzahlWuerfe++;
     if (wuerfel1 == wuerfel2) {
       paschsPlayer1++;
+      pasch++;
       document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
     }
-    punktePlayer1 = punktePlayer1 + wuerfel1 + wuerfel2;
+    punktePlayer1 = punktePlayer1 + (wuerfel1 + wuerfel2) * pasch;
     document.getElementById("punktePlayer1").innerHTML = 'Augen Player1: ' + punktePlayer1;
+    myLiveChart.addData([punktePlayer1, punktePlayer2], anzahlWuerfe);
     if (anzahlWuerfe < 10) {
       return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
     } else {
@@ -72,10 +77,13 @@ function wurf() {
   } else {
     if (wuerfel1 == wuerfel2) {
       paschsPlayer2++;
+      pasch++;
       document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
     }
-    punktePlayer2 = punktePlayer2 + wuerfel1 + wuerfel2;
+    punktePlayer2 = punktePlayer2 + (wuerfel1 + wuerfel2) * pasch;
     document.getElementById("punktePlayer2").innerHTML = 'Augen Player2: ' + punktePlayer2;
+    myLiveChart.datasets[1].points[anzahlWuerfe].value = punktePlayer2;
+    myLiveChart.update();
     return res + br();
   }
 }
@@ -154,38 +162,6 @@ function resetScore() {
   scorePlayer1 = scorePlayer2 = 0;
   verdoppler = 0;
   verdoppeln();
-
-}
-
-function saveResult() {
-  window.URL || (window.URL = window.webkitURL);
-  if(!window.URL){
-    return false;
-  }
-  var timestamp = new Date();
-  var player1 = document.getElementById('player1').value;
-  var player2 = document.getElementById('player2').value;
-  var scorePlayer1 = (parseInt(document.getElementById("scorePlayer1").innerHTML, 10) || 0);
-  var scorePlayer2 = (parseInt(document.getElementById("scorePlayer2").innerHTML, 10) || 0);
-  var myBlob = new Blob([timestamp,' ',player1,' - ',player2,': ',scorePlayer1,':',scorePlayer2], {type : 'plain/text'});
-  // creates the URl for the File
-  var url = URL.createObjectURL(myBlob);
-  // checks wether the browser supports direct downloads
-  if( "download" in document.createElement('a') ){
-    // creates an invisible button to press
-    var a = document.createElement('a');
-    a.setAttribute('href', url);
-    a.setAttribute('download', "ResultHistory.txt");
-    // Create Click event
-    var clickEvent = document.createEvent ("MouseEvent");
-    clickEvent.initMouseEvent ("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, -1, 0, null);
-    // dispatch click event to simulate download
-    a.dispatchEvent (clickEvent);
-  }
-  else{
-    // fallover, open resource in new tab.
-    window.open(url, '_blank', '');
-  }
 }
 
 function initStatistics() {
@@ -204,33 +180,24 @@ function drawChart() {
   var canvas = document.getElementById('chart'),
       ctx = canvas.getContext('2d'),
       startingData = {
-	labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-	datasets: [
-	{
-	  fillColor: "rgba(220,220,220,0.2)",
-	  strokeColor: "rgba(220,220,220,1)",
-	  pointColor: "rgba(220,220,220,1)",
-	  pointStrokeColor: "#fff",
-	  data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-	},
-	{
-	  fillColor: "rgba(151,187,205,0.2)",
-	  strokeColor: "rgba(151,187,205,1)",
-	  pointColor: "rgba(151,187,205,1)",
-	  pointStrokeColor: "#fff",
-	  data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-	}
-	]
+                   labels: [0],
+                   datasets: [
+                {
+fillColor: "rgba(220,220,220,0.2)",
+                   strokeColor: "rgba(220,220,220,1)",
+                   pointColor: "rgba(220,220,220,1)",
+                   pointStrokeColor: "#fff",
+                   data: [0]
+                },
+                {
+fillColor: "rgba(151,187,205,0.2)",
+                   strokeColor: "rgba(151,187,205,1)",
+                   pointColor: "rgba(151,187,205,1)",
+                   pointStrokeColor: "#fff",
+                   data: [0]
+                }
+                ]
       },
-      latestLabel = startingData.labels[6];
-
-  // Reduce the animation steps for demo clarity.
-  var myLiveChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
-
-  setInterval(function(){
-    // Add two random numbers for each dataset
-    myLiveChart.addData([punktePlayer1, punktePlayer2], ++latestLabel);
-    // Remove the first point so we dont just add values forever
-    myLiveChart.removeData();
-  }, 5000);
+      latestLabel = startingData.labels[0];
+  myLiveChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
 }
