@@ -8,13 +8,13 @@
 	<script type="text/javascript" src="backgammon_machine.js"> </script>
 	<script src="Chart.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
-	<body onload=verdoppeln();initStatistics();drawEyeChart();drawScoreChart()>
+	<body onload=verdoppeln();initStatistics();drawEyeChart();drawScoreChart();drawPaschChart()>
 	<div class="head" name="head" id="head">
 	  <form action="http://localhost/wuerfel/testInsertSqlite.pl" method="post" enctype="application/x-www-form-urlencoded" name="strullboss" target="_blank" >
 		<b><span style="font-size: 24px; vertical-align: baseline">Backgammon Machine </span></b>&copy;E1, E8 (2016)<br><br>
 		<img src="wuerfel.jpg" width="138" height="120" alt="Würfel"><br><br>
 		<button type="button" title="ALT-w" accesskey="w" onclick="wuerfeln()"><u>W</u>ürfeln</button>
-		<button type="button" title="ALT-n" accesskey="n" onclick="resetGameAndStats();initStatistics();resetScore();drawEyeChart();drawScoreChart();initScoreChart()"><u>N</u>eues Spiel</button><br><br>
+		<button type="button" title="ALT-n" accesskey="n" onclick="resetGameAndStats();initStatistics();resetScore();drawEyeChart();drawScoreChart()"><u>N</u>eues Spiel</button><br><br>
 		Wurf&nbsp;&nbsp;
                 <input name="player1" id="player1" type="text" size="10" min="1" max="10" step="1" value="strull">
                 <input name="player2" id="player2" type="text" size="10" min="1" max="10" step="1" value="pemo">
@@ -34,8 +34,8 @@
 	        </label>
 		<input class="buttonTransparent" type="button" title="ALT-v" accesskey="v" style="position: absolute; left: 66px; top: 148px; color: transparent; background-color: transparent; border-color: transparent; cursor: default;" value="" onclick="verdoppeln()">
 		<p id="verdoppler"></p>
-		<input class="buttonGrey" type="button" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
-		<input class="buttonGrey" type="button" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)"><br><br><br>
+		<input class="buttonNormal" type="button" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
+		<input class="buttonNormal" type="button" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)"><br><br><br>
 		<p id="scorePlayer1"></p>
 		<input type="hidden" name="scorePlayer1hidden" >
 		<p id="scorePlayer2"></p>
@@ -49,13 +49,19 @@
 	      </div>
 	<div class="statistik" name="statistik" id="statistik">
                 <p id="punktePlayer1"></p>
+		<input type="hidden" name="punktePlayer1hidden" >
                 <p id="punktePlayer2"></p>
+		<input type="hidden" name="punktePlayer2hidden" >
                 <label for = "eyeChart" class="chartTitle">
 		  Augen<br>
                 <canvas id="eyeChart" width="400" height="400"></canvas>
 	        </label>
                 <p id="paschsPlayer1"></p>
                 <p id="paschsPlayer2"></p>
+                <label for = "paschChart" class="chartTitle">
+		  Paschs<br>
+                <canvas id="paschChart" width="250" height="250"></canvas>
+	        </label>
 		</form>
 	</div>
 	</body>

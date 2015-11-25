@@ -28,6 +28,8 @@ var eyeChart;
 
 var scoreChart;
 
+var paschChart;
+
 var round = 0;
 
 function verdoppeln() {
@@ -60,6 +62,9 @@ function wurf() {
   if (counter === 0 && wuerfel1 == wuerfel2) {
     return wurf();
   }
+  if (counter === 0) {
+    paschChart.addData([paschsPlayer1, paschsPlayer2]);
+  }
   counter++;
   sayWurf();
   var pasch = 1;
@@ -67,10 +72,13 @@ function wurf() {
     anzahlWuerfe++;
     if (wuerfel1 == wuerfel2) {
       paschsPlayer1++;
+      //paschChart.datasets[0].value = paschsPlayer1;
+      //paschChart.update();
       pasch++;
       document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
     }
     punktePlayer1 = punktePlayer1 + (wuerfel1 + wuerfel2) * pasch;
+    document.strullboss.punktePlayer1hidden.value = punktePlayer1;
     eyeChart.addData([punktePlayer1, punktePlayer2], anzahlWuerfe);
     if (anzahlWuerfe < 10) {
       return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
@@ -80,10 +88,13 @@ function wurf() {
   } else {
     if (wuerfel1 == wuerfel2) {
       paschsPlayer2++;
+      //paschChart.datasets[1].value = paschsPlayer2;
+      //paschChart.update();
       pasch++;
       document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
     }
     punktePlayer2 = punktePlayer2 + (wuerfel1 + wuerfel2) * pasch;
+    document.strullboss.punktePlayer2hidden.value = punktePlayer2;
     eyeChart.datasets[1].points[anzahlWuerfe].value = punktePlayer2;
     eyeChart.update();
     return res + br();
@@ -163,9 +174,7 @@ function resetGameAndStats() {
   document.getElementById('punktePlayer2').innerHTML = '';
   punktePlayer1 = punktePlayer2 = anzahlWuerfe = paschsPlayer1 = paschsPlayer2 = counter = 0;
 }
-
  
-
 function resetScore() {
   document.getElementById('scorePlayer1').innerHTML = '';
   document.getElementById('scorePlayer2').innerHTML = '';
@@ -239,4 +248,32 @@ function drawScoreChart() {
       },
       latestLabel = startingData.labels[0];
   scoreChart = new Chart(ctx).Bar(startingData, {animationSteps: 15});
+}
+
+function drawPaschChart() {
+  var canvas = document.getElementById('paschChart'),
+      ctx = canvas.getContext('2d'),
+      startingData = {
+                   labels: [0],
+                   datasets: [
+                {
+                   label: "Paschs Player1",
+                   fillColor: "rgba(220,220,220,0.2)",
+                   strokeColor: "rgba(220,220,220,1)",
+                   highlightFill: "rgba(220,220,220,0.75)",
+                   highlightStroke: "rgba(220,220,220,1)",
+                   data: [0]
+                },
+                {
+                   label: "Paschs Player2",
+                   fillColor: "rgba(151,187,205,0.2)",
+                   strokeColor: "rgba(151,187,205,1)",
+                   highlightFill: "rgba(220,220,220,0.75)",
+                   highlightStroke: "rgba(220,220,220,1)",
+                   data: [0]
+                }
+                ]
+      },
+      latestLabel = startingData.labels[0];
+  paschChart = new Chart(ctx).Bar(startingData, {animationSteps: 15});
 }
