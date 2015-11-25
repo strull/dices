@@ -99,8 +99,10 @@ function wurf() {
 }
 
 function sayWurf() {
+  if (document.getElementById('on').checked) {
   augenWurf1.addEventListener("ended", sayWurf2, true);
   augenWurf1.play();
+  }
 }
 
 function sayWurf2() {
