@@ -263,3 +263,25 @@ function drawPaschChart() {
       latestLabel = startingData.labels[0];
   paschChart = new Chart(ctx).Bar(startingData, {animationSteps: 15});
 }
+
+function destroyCharts() {
+  eyeChart.destroy();
+  paschChart.destroy();
+  scoreChart.destroy();
+}
+
+function neuesSpiel() {
+  destroyCharts();
+  resetGameAndStats();
+  resetScore();
+  drawEyeChart();
+  drawScoreChart();
+  drawPaschChart();
+}
+
+function onload() {
+  verdoppeln();
+  drawEyeChart();
+  drawPaschChart();
+  drawScoreChart();
+}

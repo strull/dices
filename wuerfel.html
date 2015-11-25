@@ -8,13 +8,13 @@
 	<script type="text/javascript" src="backgammon_machine.js"> </script>
 	<script src="Chart.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
-	<body onload=verdoppeln();drawEyeChart();drawScoreChart();drawPaschChart()>
+	<body onload=onload()>
 	<div class="head" name="head" id="head">
 	  <form action="http://localhost/wuerfel/testInsertSqlite.pl" method="post" enctype="application/x-www-form-urlencoded" name="strullboss" target="_blank" >
 		<b><span style="font-size: 24px; vertical-align: baseline">Backgammon Machine </span></b>&copy;E1, E8 (2015)<br><br>
 		<img src="wuerfel.jpg" width="138" height="120" alt="Würfel"><br><br>
 		<button type="button" title="ALT-w" accesskey="w" onclick="wuerfeln()"><u>W</u>ürfeln</button>
-		<button type="button" title="ALT-n" accesskey="n" onclick="resetGameAndStats();resetScore();drawEyeChart();drawScoreChart();drawPaschChart()"><u>N</u>eues Spiel</button><br><br>
+		<button type="button" title="ALT-n" accesskey="n" onclick="neuesSpiel()"><u>N</u>eues Spiel</button><br><br>
                 <label for="wurf" class="chartTitle">
 		Wurf&nbsp;&nbsp;
 	      </label>
