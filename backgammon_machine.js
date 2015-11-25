@@ -155,7 +155,7 @@ function playerwins(player) {
       verdoppeln();
     }
   }
-  round = round + 1;
+  round++;
   if (round == 1){
     scoreChart.datasets[0].bars[0].value = scorePlayer1;
     scoreChart.datasets[1].bars[0].value = scorePlayer2;
@@ -174,12 +174,10 @@ function resetScore() {
   scorePlayer1 = scorePlayer2 = 0;
   verdoppler = 0;
   verdoppeln();
-  if (round > 0){
     for (i=0;i<round;i++){
       scoreChart.removeData();
     }
     round = 0;
-  }
 }
  
 function drawEyeChart() {
