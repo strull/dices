@@ -62,9 +62,6 @@ function wurf() {
   if (counter === 0 && wuerfel1 == wuerfel2) {
     return wurf();
   }
-  if (counter === 0) {
-    paschChart.addData([paschsPlayer1, paschsPlayer2]);
-  }
   counter++;
   sayWurf();
   var pasch = 1;
@@ -72,10 +69,10 @@ function wurf() {
     anzahlWuerfe++;
     if (wuerfel1 == wuerfel2) {
       paschsPlayer1++;
-      //paschChart.datasets[0].value = paschsPlayer1;
-      //paschChart.update();
+      document.strullboss.paschsPlayer1hidden.value = paschsPlayer1;
+      paschChart.removeData();
+      paschChart.addData([paschsPlayer1, paschsPlayer2], "");
       pasch++;
-      document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
     }
     punktePlayer1 = punktePlayer1 + (wuerfel1 + wuerfel2) * pasch;
     document.strullboss.punktePlayer1hidden.value = punktePlayer1;
@@ -88,10 +85,10 @@ function wurf() {
   } else {
     if (wuerfel1 == wuerfel2) {
       paschsPlayer2++;
-      //paschChart.datasets[1].value = paschsPlayer2;
-      //paschChart.update();
+      document.strullboss.paschsPlayer2hidden.value = paschsPlayer2;
+      paschChart.removeData();
+      paschChart.addData([paschsPlayer1, paschsPlayer2], "");
       pasch++;
-      document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
     }
     punktePlayer2 = punktePlayer2 + (wuerfel1 + wuerfel2) * pasch;
     document.strullboss.punktePlayer2hidden.value = punktePlayer2;
@@ -168,16 +165,10 @@ function playerwins(player) {
 
 function resetGameAndStats() {
   document.getElementById('wurf').innerHTML = '';
-  document.getElementById('paschsPlayer1').innerHTML = '';
-  document.getElementById('paschsPlayer2').innerHTML = '';
-  document.getElementById('punktePlayer1').innerHTML = '';
-  document.getElementById('punktePlayer2').innerHTML = '';
   punktePlayer1 = punktePlayer2 = anzahlWuerfe = paschsPlayer1 = paschsPlayer2 = counter = 0;
 }
  
 function resetScore() {
-  document.getElementById('scorePlayer1').innerHTML = '';
-  document.getElementById('scorePlayer2').innerHTML = '';
   scorePlayer1 = scorePlayer2 = 0;
   verdoppler = 0;
   verdoppeln();
@@ -187,11 +178,6 @@ function resetScore() {
     }
     round = 0;
   }
-}
-
-function initStatistics() {
-  document.getElementById("paschsPlayer1").innerHTML = 'Paschs Player1: ' + paschsPlayer1;
-  document.getElementById("paschsPlayer2").innerHTML = 'Paschs Player2: ' + paschsPlayer2;
 }
  
 function drawEyeChart() {
