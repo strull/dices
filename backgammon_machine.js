@@ -52,8 +52,13 @@ function wurf() {
   var ppic1 = '<img src="p' +wuerfel1 + '.png">';
   var ppic2 = '<img src="p' +wuerfel2 + '.png">';
   var res;
-  augenWurf1 = new Audio(wuerfel1 + ".wav");
-  augenWurf2 = new Audio(wuerfel2 + ".wav");
+  if (document.getElementById('en').checked) {
+    augenWurf1 = new Audio(wuerfel1 + ".wav");
+    augenWurf2 = new Audio(wuerfel2 + ".wav");
+  } else {
+    augenWurf1 = new Audio(wuerfel1 + "d.wav");
+    augenWurf2 = new Audio(wuerfel2 + "d.wav");
+  }
   if (wuerfel1 == wuerfel2) {
     res = twoBlanks + ppic1 + twoBlanks + ppic2;
   } else {
@@ -100,8 +105,8 @@ function wurf() {
 
 function sayWurf() {
   if (document.getElementById('on').checked) {
-  augenWurf1.addEventListener("ended", sayWurf2, true);
-  augenWurf1.play();
+    augenWurf1.addEventListener("ended", sayWurf2, true);
+    augenWurf1.play();
   }
 }
 
@@ -112,7 +117,7 @@ function sayWurf2() {
 function br() {
   return "<br>";
 }
- 
+
 function blanks(count) {
   return Array(count + 1).join("&nbsp;");
 }
@@ -148,7 +153,7 @@ function playerwins(player) {
   } else {
     scorePlayer2 = scorePlayer2 + verdoppler;
     if (scorePlayer2 >= punkte) {
-     alert("Game over!");
+      alert("Game over!");
     } else {
       document.strullboss.scorePlayer2hidden.value = scorePlayer2;
       verdoppler = 0;
@@ -169,40 +174,40 @@ function resetGameAndStats() {
   document.getElementById('wurf').innerHTML = '';
   punktePlayer1 = punktePlayer2 = anzahlWuerfe = paschsPlayer1 = paschsPlayer2 = counter = 0;
 }
- 
+
 function resetScore() {
   scorePlayer1 = scorePlayer2 = 0;
   verdoppler = 0;
   verdoppeln();
-    for (i=0;i<round;i++){
-      scoreChart.removeData();
-    }
-    round = 0;
+  for (i=0;i<round;i++){
+    scoreChart.removeData();
+  }
+  round = 0;
 }
- 
+
 function drawEyeChart() {
   var canvas = document.getElementById('eyeChart'),
       ctx = canvas.getContext('2d'),
       startingData = {
-                   labels: [0],
-                   datasets: [
-                {
-                   label: "Augen Player1",
-                   fillColor: "rgba(220,220,220,0.2)",
-                   strokeColor: "rgba(220,220,220,1)",
-                   pointColor: "rgba(220,220,220,1)",
-                   pointStrokeColor: "#fff",
-                   data: [0]
-                },
-                {
-                   label: "Augen Player2",
-                   fillColor: "rgba(151,187,205,0.2)",
-                   strokeColor: "rgba(151,187,205,1)",
-                   pointColor: "rgba(151,187,205,1)",
-                   pointStrokeColor: "#fff",
-                   data: [0]
-                }
-                ]
+	labels: [0],
+	datasets: [
+	{
+	  label: "Augen Player1",
+	  fillColor: "rgba(220,220,220,0.2)",
+	  strokeColor: "rgba(220,220,220,1)",
+	  pointColor: "rgba(220,220,220,1)",
+	  pointStrokeColor: "#fff",
+	  data: [0]
+	},
+	{
+	  label: "Augen Player2",
+	  fillColor: "rgba(151,187,205,0.2)",
+	  strokeColor: "rgba(151,187,205,1)",
+	  pointColor: "rgba(151,187,205,1)",
+	  pointStrokeColor: "#fff",
+	  data: [0]
+	}
+	]
       },
       latestLabel = startingData.labels[0];
   eyeChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
@@ -212,25 +217,25 @@ function drawScoreChart() {
   var canvas = document.getElementById('scoreChart'),
       ctx = canvas.getContext('2d'),
       startingData = {
-                   labels: ["round " + 1],
-                   datasets: [
-                {
-                   label: "Score Player1",
-                   fillColor: "rgba(220,220,220,0.2)",
-                   strokeColor: "rgba(220,220,220,1)",
-                   highlightFill: "rgba(220,220,220,0.75)",
-                   highlightStroke: "rgba(220,220,220,1)",
-                   data: [0]
-                },
-                {
-                   label: "Score Player2",
-                   fillColor: "rgba(151,187,205,0.2)",
-                   strokeColor: "rgba(151,187,205,1)",
-                   highlightFill: "rgba(220,220,220,0.75)",
-                   highlightStroke: "rgba(220,220,220,1)",
-                   data: [0]
-                }
-                ]
+	labels: ["round " + 1],
+	datasets: [
+	{
+	  label: "Score Player1",
+	  fillColor: "rgba(220,220,220,0.2)",
+	  strokeColor: "rgba(220,220,220,1)",
+	  highlightFill: "rgba(220,220,220,0.75)",
+	  highlightStroke: "rgba(220,220,220,1)",
+	  data: [0]
+	},
+	{
+	  label: "Score Player2",
+	  fillColor: "rgba(151,187,205,0.2)",
+	  strokeColor: "rgba(151,187,205,1)",
+	  highlightFill: "rgba(220,220,220,0.75)",
+	  highlightStroke: "rgba(220,220,220,1)",
+	  data: [0]
+	}
+	]
       },
       latestLabel = startingData.labels[0];
   scoreChart = new Chart(ctx).Bar(startingData, {animationSteps: 15});
@@ -240,25 +245,25 @@ function drawPaschChart() {
   var canvas = document.getElementById('paschChart'),
       ctx = canvas.getContext('2d'),
       startingData = {
-                   labels: [0],
-                   datasets: [
-                {
-                   label: "Paschs Player1",
-                   fillColor: "rgba(220,220,220,0.2)",
-                   strokeColor: "rgba(220,220,220,1)",
-                   highlightFill: "rgba(220,220,220,0.75)",
-                   highlightStroke: "rgba(220,220,220,1)",
-                   data: [0]
-                },
-                {
-                   label: "Paschs Player2",
-                   fillColor: "rgba(151,187,205,0.2)",
-                   strokeColor: "rgba(151,187,205,1)",
-                   highlightFill: "rgba(220,220,220,0.75)",
-                   highlightStroke: "rgba(220,220,220,1)",
-                   data: [0]
-                }
-                ]
+	labels: [0],
+	datasets: [
+	{
+	  label: "Paschs Player1",
+	  fillColor: "rgba(220,220,220,0.2)",
+	  strokeColor: "rgba(220,220,220,1)",
+	  highlightFill: "rgba(220,220,220,0.75)",
+	  highlightStroke: "rgba(220,220,220,1)",
+	  data: [0]
+	},
+	{
+	  label: "Paschs Player2",
+	  fillColor: "rgba(151,187,205,0.2)",
+	  strokeColor: "rgba(151,187,205,1)",
+	  highlightFill: "rgba(220,220,220,0.75)",
+	  highlightStroke: "rgba(220,220,220,1)",
+	  data: [0]
+	}
+	]
       },
       latestLabel = startingData.labels[0];
   paschChart = new Chart(ctx).Bar(startingData, {animationSteps: 15});

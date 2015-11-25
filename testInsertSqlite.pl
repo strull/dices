@@ -18,7 +18,7 @@ $paschsPlayer1 = $q -> param('paschsPlayer1hidden');
 $paschsPlayer2 = $q -> param('paschsPlayer2hidden');
 
 my $driver   = "SQLite"; 
-my $database = "backgammon.db";
+my $database = "backgammon";
 my $dsn = "DBI:$driver:dbname=$database";
 my $userid = "";
 my $password = "";
@@ -30,4 +30,4 @@ $Abfrage->execute($dt_mysql,$player1,$player2,$scorePlayer1,$scorePlayer2,$punkt
 $Abfrage->finish();
 
 print $q->header('text/plain');
-print "Results so far:\n", `sqlite3 backgammon.db "select * from results"`;
+print "Results so far:\n", `sqlite3 backgammon "select * from results"`;
