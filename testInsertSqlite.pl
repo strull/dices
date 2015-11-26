@@ -24,9 +24,9 @@ my $userid = "";
 my $password = "";
 my $dbh = DBI->connect($dsn, $userid, $password, { RaiseError => 1 }) or die $DBI::errstr;
 
-my $SQL_Statement = 'INSERT INTO results (DATETIME, player1, player2, scorePlayer1, scorePlayer2, augenPlayer1,augenPlayer2,paschsPlayer1,paschsPlayer2) VALUES (?,?,?,?,?,?,?,?,?)';
+my $SQL_Statement = 'INSERT INTO results (id, DATETIME, player1, player2, scorePlayer1, scorePlayer2, augenPlayer1,augenPlayer2,paschsPlayer1,paschsPlayer2) VALUES (?,?,?,?,?,?,?,?,?,?)';
 my $Abfrage = $dbh->prepare($SQL_Statement);
-$Abfrage->execute($dt_mysql,$player1,$player2,$scorePlayer1,$scorePlayer2,$punktePlayer1,$punktePlayer2,$paschsPlayer1,$paschsPlayer2);
+$Abfrage->execute($null,$dt_mysql,$player1,$player2,$scorePlayer1,$scorePlayer2,$punktePlayer1,$punktePlayer2,$paschsPlayer1,$paschsPlayer2);
 $Abfrage->finish();
 
 print $q->header('text/plain');
