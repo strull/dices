@@ -4,6 +4,8 @@ var anzahlWuerfe = 0;
 
 var twoBlanks = blanks(2);
 
+var fourBlanks = blanks(4);
+
 var fiveBlanks = blanks(5);
 
 var verdoppler = 0;
@@ -31,6 +33,8 @@ var scoreChart;
 var paschChart;
 
 var round = 0;
+
+Wochentag = new Array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
 
 function verdoppeln() {
   document.getElementById("verdoppler").innerHTML = plotVerdoppler();
@@ -60,9 +64,9 @@ function wurf() {
     augenWurf2 = new Audio(wuerfel2 + "d.wav");
   }
   if (wuerfel1 == wuerfel2) {
-    res = twoBlanks + ppic1 + twoBlanks + ppic2;
+    res = fourBlanks + ppic1 + twoBlanks + ppic2;
   } else {
-    res = twoBlanks + pic1 + twoBlanks + pic2;
+    res = fourBlanks + pic1 + twoBlanks + pic2;
   }
   if (counter === 0 && wuerfel1 == wuerfel2) {
     return wurf();
@@ -83,9 +87,9 @@ function wurf() {
     document.strullboss.punktePlayer1hidden.value = punktePlayer1;
     eyeChart.addData([punktePlayer1, punktePlayer2], anzahlWuerfe);
     if (anzahlWuerfe < 10) {
-      return fiveBlanks + anzahlWuerfe + twoBlanks + res + fiveBlanks;
+      return fourBlanks + anzahlWuerfe + twoBlanks + res + fourBlanks;
     } else {
-      return fiveBlanks + anzahlWuerfe + res + fiveBlanks;
+      return fourBlanks + anzahlWuerfe + res + fourBlanks;
     }
   } else {
     if (wuerfel1 == wuerfel2) {
@@ -269,6 +273,45 @@ function drawPaschChart() {
   paschChart = new Chart(ctx).Bar(startingData, {animationSteps: 15});
 }
 
+function displayTime()
+{
+  var SystemDatum = new Date();
+  var CounterTag = SystemDatum.getDate();
+  var CounterMonat = SystemDatum.getMonth() + 1;
+  var CounterJahr = SystemDatum.getFullYear();
+  var CounterStd = SystemDatum.getHours();
+  var CounterMin = SystemDatum.getMinutes();
+  var CounterSek = SystemDatum.getSeconds();
+  var TagDerWoche = SystemDatum.getDay();
+  //  für zweistellige Anzeige
+  var CounterTag2  = ((CounterTag < 10) ? "0" : "");
+  var CounterMonat2  = ((CounterMonat < 10) ? ".0" : ".");
+  var CounterStd2  = ((CounterStd < 10) ? "0" : "");
+  var CounterMin2  = ((CounterMin < 10) ? ":0" : ":");
+  var CounterSek2  = ((CounterSek < 10) ? ":0" : ":");
+  var DatumJetzt = CounterTag2 + CounterTag + CounterMonat2 + CounterMonat  + "." + CounterJahr;
+  // var ZeitJetzt = CounterStd2 + CounterStd + CounterMin2 + CounterMin + CounterSek2 + CounterSek + " Uhr";
+  var ZeitJetzt = CounterStd2 + CounterStd + CounterMin2 + CounterMin + " Uhr";
+  DarstellungOption = 4
+    switch (DarstellungOption) {
+      case 1:
+	var DispString = ZeitJetzt;
+	break;
+      case 2:
+	var DispString = DatumJetzt + " &nbsp;" + ZeitJetzt;
+	break;
+      case 3:
+	var DispString = Wochentag[TagDerWoche] + " &nbsp;" + ZeitJetzt;
+	break;
+      case 4:
+	var DispString = Wochentag[TagDerWoche] + " " + DatumJetzt + " &nbsp;" + ZeitJetzt;
+	break;
+    }
+  document.getElementById("ZeitAnzeige").innerHTML = DispString;
+  setTimeout("displayTime()", 1000);
+}
+window.setTimeout('displayTime()',1000);
+
 function destroyCharts() {
   eyeChart.destroy();
   paschChart.destroy();
@@ -289,4 +332,5 @@ function onload() {
   drawEyeChart();
   drawPaschChart();
   drawScoreChart();
+  uhr();
 }

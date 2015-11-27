@@ -30,4 +30,4 @@ $Abfrage->execute($null,$dt_mysql,$player1,$player2,$scorePlayer1,$scorePlayer2,
 $Abfrage->finish();
 
 print $q->header('text/plain');
-print "Results so far:\n", `sqlite3 backgammon "select * from results"`;
+print "Update erfolgreich!";

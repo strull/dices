@@ -11,7 +11,7 @@
 	<body onload=onload()>
 	<div class="head" name="head" id="head">
 	  <form action="http://localhost/wuerfel/testInsertSqlite.pl" method="post" enctype="application/x-www-form-urlencoded" name="strullboss" target="_blank" >
-	    <label="title" class="title">Backgammon Machine</label></b>
+		<label="title" class="title">Backgammon Machine</b>
 		<label="copyright" class="text">&copy;E1, E8 (2015)</label><br><br>
 		<img src="wuerfel.jpg" width="138" height="120" alt="Würfel"><br><br>
 		<button type="button" title="ALT-w" accesskey="w" onclick="wuerfeln()"><u>W</u>ürfeln</button>
@@ -74,7 +74,11 @@
                 <label for = "paschChart" class="chartTitle">
 		  Paschs<br>
                 <canvas id="paschChart" width="250" height="250"></canvas>
-	        </label>
+	      </label><br>
+                <label for="dbInfo" class="text">
+		  <a href="http://localhost/wuerfel/dbInfo.pl">DB infos</a><br><br>
+                <div id="ZeitBox01"><div id="ZeitAnzeige"></div></div>
+	      </label>
 		</form>
 	</div>
 	</body>
