@@ -57,11 +57,11 @@ function wurf() {
   var ppic2 = '<img src="p' +wuerfel2 + '.png">';
   var res;
   if (document.getElementById('en').checked) {
-    augenWurf1 = new Audio(wuerfel1 + ".wav");
-    augenWurf2 = new Audio(wuerfel2 + ".wav");
+    augenWurf1 = new Audio(wuerfel1 + "se.wav");
+    augenWurf2 = new Audio(wuerfel2 + "se.wav");
   } else {
-    augenWurf1 = new Audio(wuerfel1 + "d.wav");
-    augenWurf2 = new Audio(wuerfel2 + "d.wav");
+    augenWurf1 = new Audio(wuerfel1 + "sd.wav");
+    augenWurf2 = new Audio(wuerfel2 + "sd.wav");
   }
   if (wuerfel1 == wuerfel2) {
     res = fourBlanks + ppic1 + twoBlanks + ppic2;

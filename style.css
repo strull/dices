@@ -6,6 +6,7 @@
   background-color: transparent;
   border-color: transparent;
   cursor: default;
+  outline: none;
 }
 #verdopppler {
   position: absolute;
