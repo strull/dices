@@ -1,0 +1,36 @@
+{
+  "name": "dice",
+  "version": "0.0.0",
+  "description": "for backgammon",
+  "main": "backgammon_machine.js",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-concat": "~0.5.1",
+    "grunt-contrib-uglify": "~0.9.2",
+    "grunt-contrib-htmlmin": "~0.5.0",
+    "grunt-contrib-cssmin": "~0.14.0",
+    "grunt-uncss": "~0.4.3",
+    "grunt-contrib-jshint": "~0.11.3",
+    "jshint-stylish": "~2.0.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-html": "~5.0.1",
+    "grunt-htmlhint": "~0.9.12-fix",
+    "sql": "~0.62.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strull/dices.git"
+  },
+  "keywords": [
+    "backgammon",
+    "dice"
+  ],
+  "author": "pemo and strull",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/strull/dices/issues"
+  }
+}
