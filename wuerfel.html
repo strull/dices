@@ -8,21 +8,21 @@
 <script type="text/javascript" src="backgammon_machine.js"> </script>
 <script src="Chart.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
-<body onload=onload()>
+<body onload="onload()">
 <div class="head" name="head" id="head">
   <form action="http://localhost/wuerfel/testInsertSqlite.pl" method="post" enctype="application/x-www-form-urlencoded" name="strullboss" target="_blank" >
-    <label="title" class="title">Backgammon Machine</b>
-    <label="copyright" class="text">&copy;E1, E8 (2015)</label><br><br>
-    <img src="wuerfel.jpg" width="138" height="120" alt="Würfel"><br><br>
+    <label for="title" class="title">Backgammon Machine</label>
+    <label for="copyright" class="text">&copy;E1, E8 (2015)</label><br><br>
+    <img src="wuerfel.jpg" width="138" height="120" alt="Wuerfel"><br><br>
     <button type="button" title="ALT-w" accesskey="w" onclick="wuerfeln()"><u>W</u>ürfeln</button>
     <button type="button" title="ALT-n" accesskey="n" onclick="neuesSpiel()"><u>N</u>eues Spiel</button><br><br>
-    <label for="wurf" class="chartTitle">
+    <label for="wurfLabel" class="chartTitle">
       Wurf&nbsp;&nbsp;
     </label>
     <input name="player1" id="player1" type="text" size="10" min="1" max="10" step="1" value="strull">
     <input name="player2" id="player2" type="text" size="10" min="1" max="10" step="1" value="pemo">
   </div>
-  <div class="wurf" name="wurf" id="wurf">
+  <div class="wurf" name="wurf" id="wurfDiv">
     <p id="wurf"></p>
   </div>
   <div class="verdopppler" name="verdopppler" id="verdopppler">
@@ -43,7 +43,7 @@
     <label for="Verdoppler" class="chartTitle">
       Verdoppler
     </label>
-    <input class="buttonTransparent" type="button" title="ALT-v" accesskey="v" style="position: absolute; left: 66px; top: 152px; color: transparent; background-color: transparent; border-color: transparent; cursor: default;" value="" onclick="verdoppeln()">
+    <input class="buttonTransparent" type="button" title="ALT-v" accesskey="v" value="" onclick="verdoppeln()">
     <p id="verdoppler"></p>
     <input class="buttonNormal" type="button" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
     <input class="buttonNormal" type="button" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)"><br><br><br>

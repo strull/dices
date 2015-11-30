@@ -1,8 +1,11 @@
 .buttonTransparent {
   position: absolute;
+  left: 66px;
+  top: 152px;
   height: 100px;
   width: 100px;
   color: transparent;
+  border-color: none;
   background-color: transparent;
   border-color: transparent;
   cursor: default;
