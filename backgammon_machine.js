@@ -332,5 +332,4 @@ function onload() {
   drawEyeChart();
   drawPaschChart();
   drawScoreChart();
-  uhr();
 }
