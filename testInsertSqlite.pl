@@ -19,6 +19,8 @@ $paschsPlayer2 = $q -> param('paschsPlayer2hidden');
 
 my $driver   = "SQLite"; 
 my $database = "backgammon";
+
+`sqlite3 $database "CREATE TABLE results(id INTEGER PRIMARY KEY AUTOINCREMENT, DATETIME TEXT, player1 TEXT, player2 TEXT, scorePlayer1 INT, scorePlayer2 INT, augenPlayer1 INT, augenPlayer2 INT, paschsPlayer1 INT, paschsPlayer2 INT);"` unless -e $database;
 my $dsn = "DBI:$driver:dbname=$database";
 my $userid = "";
 my $password = "";
