@@ -6,8 +6,6 @@ var twoBlanks = blanks(2);
 
 var fourBlanks = blanks(4);
 
-var fiveBlanks = blanks(5);
-
 var verdoppler = 0;
 
 var augenWurf1;
@@ -37,7 +35,7 @@ var round = 0;
 var Wochentag = new Array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
 
 var n = 7;
-var soundEn = new Array();
+var soundEn = [];
 for (var i = 1; i < n; i++) soundEn.push(new Audio(i + "se.wav"));
 
 function verdoppeln() {
@@ -142,12 +140,11 @@ function plotVerdoppler() {
   } else if (verdoppler >= 100 && verdoppler <= 999) {
     return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="79" y="85">' + verdoppler + "</text></g></svg>";
   } else {
-    return "So weit verdoppeln ist verboten... ein Würfel explodiert...<br>" + '<img src="wuerfel_explodiert.jpg">';
+    return "So weit verdoppeln ist verboten... ein Wuerfel explodiert...<br>" + '<img src="wuerfel_explodiert.jpg">';
   }
 }
 
 function playerwins(player) {
-  var score = (parseInt(document.getElementById("scorePlayer" + player).innerHTML, 10) || 0) + verdoppler;
   var punkte = document.getElementById("punkte").value;
   if (player == 1) {
     scorePlayer1 = scorePlayer1 + verdoppler;
@@ -277,38 +274,21 @@ function drawPaschChart() {
   paschChart = new Chart(ctx).Bar(startingData, {animationSteps: 15});
 }
 
-function displayTime()
-{
+function displayTime() {
   var SystemDatum = new Date();
   var CounterTag = SystemDatum.getDate();
   var CounterMonat = SystemDatum.getMonth() + 1;
   var CounterJahr = SystemDatum.getFullYear();
   var CounterStd = SystemDatum.getHours();
   var CounterMin = SystemDatum.getMinutes();
-  var CounterSek = SystemDatum.getSeconds();
   var TagDerWoche = SystemDatum.getDay();
   var CounterTag2  = ((CounterTag < 10) ? "0" : "");
   var CounterMonat2  = ((CounterMonat < 10) ? ".0" : ".");
   var CounterStd2  = ((CounterStd < 10) ? "0" : "");
   var CounterMin2  = ((CounterMin < 10) ? ":0" : ":");
-  var CounterSek2  = ((CounterSek < 10) ? ":0" : ":");
   var DatumJetzt = CounterTag2 + CounterTag + CounterMonat2 + CounterMonat  + "." + CounterJahr;
   var ZeitJetzt = CounterStd2 + CounterStd + CounterMin2 + CounterMin + " Uhr";
-  DarstellungOption = 4;
-  switch (DarstellungOption) {
-    case 1:
-      var DispString = ZeitJetzt;
-      break;
-    case 2:
-      var DispString = DatumJetzt + " &nbsp;" + ZeitJetzt;
-      break;
-    case 3:
-      var DispString = Wochentag[TagDerWoche] + " &nbsp;" + ZeitJetzt;
-      break;
-    case 4:
-      var DispString = Wochentag[TagDerWoche] + " " + DatumJetzt + " &nbsp;" + ZeitJetzt;
-      break;
-  }
+  var DispString = Wochentag[TagDerWoche] + " " + DatumJetzt + " &nbsp;" + ZeitJetzt;
   document.getElementById("ZeitAnzeige").innerHTML = DispString;
   setTimeout("displayTime()", 1000);
 }
