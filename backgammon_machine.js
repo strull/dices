@@ -34,7 +34,11 @@ var paschChart;
 
 var round = 0;
 
-Wochentag = new Array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
+var Wochentag = new Array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
+
+var n = 7;
+var soundEn = new Array();
+for (var i = 1; i < n; i++) soundEn.push(new Audio(i + "se.wav"));
 
 function verdoppeln() {
   document.getElementById("verdoppler").innerHTML = plotVerdoppler();
@@ -57,8 +61,8 @@ function wurf() {
   var ppic2 = '<img src="p' +wuerfel2 + '.png">';
   var res;
   if (document.getElementById('en').checked) {
-    augenWurf1 = new Audio(wuerfel1 + "se.wav");
-    augenWurf2 = new Audio(wuerfel2 + "se.wav");
+    augenWurf1 = soundEn[wuerfel1 - 1];
+    augenWurf2 = soundEn[wuerfel2 - 1];
   } else {
     augenWurf1 = new Audio(wuerfel1 + "sd.wav");
     augenWurf2 = new Audio(wuerfel2 + "sd.wav");
@@ -283,30 +287,28 @@ function displayTime()
   var CounterMin = SystemDatum.getMinutes();
   var CounterSek = SystemDatum.getSeconds();
   var TagDerWoche = SystemDatum.getDay();
-  //  für zweistellige Anzeige
   var CounterTag2  = ((CounterTag < 10) ? "0" : "");
   var CounterMonat2  = ((CounterMonat < 10) ? ".0" : ".");
   var CounterStd2  = ((CounterStd < 10) ? "0" : "");
   var CounterMin2  = ((CounterMin < 10) ? ":0" : ":");
   var CounterSek2  = ((CounterSek < 10) ? ":0" : ":");
   var DatumJetzt = CounterTag2 + CounterTag + CounterMonat2 + CounterMonat  + "." + CounterJahr;
-  // var ZeitJetzt = CounterStd2 + CounterStd + CounterMin2 + CounterMin + CounterSek2 + CounterSek + " Uhr";
   var ZeitJetzt = CounterStd2 + CounterStd + CounterMin2 + CounterMin + " Uhr";
-  DarstellungOption = 4
-    switch (DarstellungOption) {
-      case 1:
-	var DispString = ZeitJetzt;
-	break;
-      case 2:
-	var DispString = DatumJetzt + " &nbsp;" + ZeitJetzt;
-	break;
-      case 3:
-	var DispString = Wochentag[TagDerWoche] + " &nbsp;" + ZeitJetzt;
-	break;
-      case 4:
-	var DispString = Wochentag[TagDerWoche] + " " + DatumJetzt + " &nbsp;" + ZeitJetzt;
-	break;
-    }
+  DarstellungOption = 4;
+  switch (DarstellungOption) {
+    case 1:
+      var DispString = ZeitJetzt;
+      break;
+    case 2:
+      var DispString = DatumJetzt + " &nbsp;" + ZeitJetzt;
+      break;
+    case 3:
+      var DispString = Wochentag[TagDerWoche] + " &nbsp;" + ZeitJetzt;
+      break;
+    case 4:
+      var DispString = Wochentag[TagDerWoche] + " " + DatumJetzt + " &nbsp;" + ZeitJetzt;
+      break;
+  }
   document.getElementById("ZeitAnzeige").innerHTML = DispString;
   setTimeout("displayTime()", 1000);
 }
