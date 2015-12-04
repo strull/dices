@@ -34,9 +34,14 @@ var round = 0;
 
 var Wochentag = new Array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
 
-var n = 7;
+var soundlocked;
+var audioFiles = [];
 var soundEn = [];
-for (var i = 1; i < n; i++) soundEn.push(new Audio(i + "se.wav"));
+for (var i = 1; i < 7; i++) {
+  var afile=new Audio(i + "se.wav");
+  afile.addEventListener("ended", onAudioEnded, true);
+  soundEn.push(afile);
+}
 
 function verdoppeln() {
   document.getElementById("verdoppler").innerHTML = plotVerdoppler();
@@ -110,15 +115,25 @@ function wurf() {
 }
 
 function sayWurf() {
-  if (document.getElementById('on').checked) {
-    augenWurf1.addEventListener("ended", sayWurf2, true);
-    augenWurf1.play();
+  play(augenWurf1);
+  play(augenWurf2);
+}
+
+function play(file) {
+  if (!document.getElementById('on').checked) return;
+  if (file == undefined) return;
+  if (soundlocked) {
+    audioFiles.push(file);
+  } else {
+    soundlocked = true;
+    file.play();
   }
 }
 
-function sayWurf2() {
-  augenWurf2.play();
-}
+function onAudioEnded(){
+  soundlocked = false;
+  play(audioFiles.shift());
+};
 
 function br() {
   return "<br>";
