@@ -91,6 +91,8 @@ function wurf() {
       pasch++;
     }
     punktePlayer1 = punktePlayer1 + (wuerfel1 + wuerfel2) * pasch;
+    var player1 = document.getElementById("player1").value;
+    document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
     document.strullboss.punktePlayer1hidden.value = punktePlayer1;
     eyeChart.addData([punktePlayer1, punktePlayer2], anzahlWuerfe);
     if (anzahlWuerfe < 10) {
@@ -107,6 +109,8 @@ function wurf() {
       pasch++;
     }
     punktePlayer2 = punktePlayer2 + (wuerfel1 + wuerfel2) * pasch;
+    var player2 = document.getElementById("player2").value;
+    document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
     document.strullboss.punktePlayer2hidden.value = punktePlayer2;
     eyeChart.datasets[1].points[anzahlWuerfe].value = punktePlayer2;
     eyeChart.update();
@@ -162,18 +166,34 @@ function plotVerdoppler() {
 function playerwins(player) {
   var punkte = document.getElementById("punkte").value;
   if (player == 1) {
-    scorePlayer1 = scorePlayer1 + verdoppler;
+    if (document.getElementById('gammon').checked) { 
+      scorePlayer1 = scorePlayer1 + (verdoppler * 2);
+    }
+    else if (document.getElementById('backgammon').checked) { 
+      scorePlayer1 = scorePlayer1 + (verdoppler * 4);
+    } else {
+      scorePlayer1 = scorePlayer1 + verdoppler;
+    }
     if (scorePlayer1 >= punkte) {
-      alert("Game over!");
+      var player1 = document.getElementById("player1").value;
+      alert("Game over! " + player1 + " wins.");
     } else {
       document.strullboss.scorePlayer1hidden.value = scorePlayer1;
       verdoppler = 0;
       verdoppeln();
     }
   } else {
-    scorePlayer2 = scorePlayer2 + verdoppler;
+    if (document.getElementById('gammon').checked) { 
+      scorePlayer2 = scorePlayer2 + (verdoppler * 2);
+    }
+    else if (document.getElementById('backgammon').checked) { 
+      scorePlayer2 = scorePlayer2 + (verdoppler * 4);
+    } else {
+      scorePlayer2 = scorePlayer2 + verdoppler;
+    }
     if (scorePlayer2 >= punkte) {
-      alert("Game over!");
+      var player2 = document.getElementById("player2").value;
+      alert("Game over! " + player2 + " wins.");
     } else {
       document.strullboss.scorePlayer2hidden.value = scorePlayer2;
       verdoppler = 0;
@@ -193,6 +213,10 @@ function playerwins(player) {
 function resetGameAndStats() {
   document.getElementById('wurf').innerHTML = '';
   punktePlayer1 = punktePlayer2 = anzahlWuerfe = paschsPlayer1 = paschsPlayer2 = counter = 0;
+  var player1 = document.getElementById("player1").value;
+  document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
+  var player2 = document.getElementById("player2").value;
+  document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
 }
 
 function resetScore() {
@@ -203,6 +227,11 @@ function resetScore() {
     scoreChart.removeData();
   }
   round = 0;
+}
+
+function resetVerdoppler() {
+  verdoppler = 0;
+  verdoppeln();
 }
 
 function drawEyeChart() {
@@ -309,17 +338,32 @@ function displayTime() {
 }
 window.setTimeout('displayTime()',1000);
 
+function initGammonBackgammon() {
+  document.getElementById('gammon').checked = false;
+  document.getElementById('backgammon').checked = false;
+}
+
+function initAugenPlayer() {
+  var player1 = document.getElementById("player1").value;
+  document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
+  var player2 = document.getElementById("player2").value;
+  document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
+}
+
 function neuesSpiel() {
   eyeChart.destroy();
   paschChart.destroy();
   resetGameAndStats();
+  resetVerdoppler();
   drawEyeChart();
   drawPaschChart();
+  initGammonBackgammon();
 }
 
 function onload() {
   verdoppeln();
   drawEyeChart();
+  initAugenPlayer();
   drawPaschChart();
   drawScoreChart();
 }
