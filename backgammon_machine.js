@@ -309,18 +309,11 @@ function displayTime() {
 }
 window.setTimeout('displayTime()',1000);
 
-function destroyCharts() {
+function neuesSpiel() {
   eyeChart.destroy();
   paschChart.destroy();
-  scoreChart.destroy();
-}
-
-function neuesSpiel() {
-  destroyCharts();
   resetGameAndStats();
-  resetScore();
   drawEyeChart();
-  drawScoreChart();
   drawPaschChart();
 }
 
