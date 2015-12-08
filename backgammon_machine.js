@@ -92,7 +92,11 @@ function wurf() {
     }
     punktePlayer1 = punktePlayer1 + (wuerfel1 + wuerfel2) * pasch;
     var player1 = document.getElementById("player1").value;
-    document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
+    if (!player1) {
+      document.getElementById('augenPlayer1').innerHTML = 'Augen:  ' + punktePlayer1;
+    } else {
+      document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
+    }
     document.strullboss.punktePlayer1hidden.value = punktePlayer1;
     eyeChart.addData([punktePlayer1, punktePlayer2], anzahlWuerfe);
     if (anzahlWuerfe < 10) {
@@ -110,7 +114,11 @@ function wurf() {
     }
     punktePlayer2 = punktePlayer2 + (wuerfel1 + wuerfel2) * pasch;
     var player2 = document.getElementById("player2").value;
-    document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
+    if (!player2) {
+      document.getElementById('augenPlayer2').innerHTML = 'Augen:  ' + punktePlayer2;
+    } else {
+      document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
+    }
     document.strullboss.punktePlayer2hidden.value = punktePlayer2;
     eyeChart.datasets[1].points[anzahlWuerfe].value = punktePlayer2;
     eyeChart.update();
@@ -214,9 +222,17 @@ function resetGameAndStats() {
   document.getElementById('wurf').innerHTML = '';
   punktePlayer1 = punktePlayer2 = anzahlWuerfe = paschsPlayer1 = paschsPlayer2 = counter = 0;
   var player1 = document.getElementById("player1").value;
-  document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
+  if (!player1) {
+    document.getElementById('augenPlayer1').innerHTML = 'Augen:  ' + punktePlayer1;
+  } else {
+    document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
+  }
   var player2 = document.getElementById("player2").value;
-  document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
+  if (!player2) {
+    document.getElementById('augenPlayer2').innerHTML = 'Augen:  ' + punktePlayer2;
+  } else {
+    document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
+  }
 }
 
 function resetScore() {
@@ -345,9 +361,17 @@ function initGammonBackgammon() {
 
 function initAugenPlayer() {
   var player1 = document.getElementById("player1").value;
-  document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
+  if (!player1) {
+    document.getElementById('augenPlayer1').innerHTML = 'Augen:  ' + punktePlayer1;
+  } else {
+    document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
+  }
   var player2 = document.getElementById("player2").value;
-  document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
+  if (!player2) {
+    document.getElementById('augenPlayer2').innerHTML = 'Augen:  ' + punktePlayer2;
+  } else {
+    document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
+  }
 }
 
 function neuesSpiel() {
