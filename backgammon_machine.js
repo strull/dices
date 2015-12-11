@@ -43,6 +43,13 @@ for (var i = 1; i < 7; i++) {
   soundEn.push(afile);
 }
 
+var soundDe = [];
+for (var j = 1; j < 7; j++) {
+  var bfile=new Audio(j + "sd.wav");
+  bfile.addEventListener("ended", onAudioEnded, true);
+  soundDe.push(bfile);
+}
+
 function verdoppeln() {
   document.getElementById("verdoppler").innerHTML = plotVerdoppler();
 }
@@ -67,8 +74,8 @@ function wurf() {
     augenWurf1 = soundEn[wuerfel1 - 1];
     augenWurf2 = soundEn[wuerfel2 - 1];
   } else {
-    augenWurf1 = new Audio(wuerfel1 + "sd.wav");
-    augenWurf2 = new Audio(wuerfel2 + "sd.wav");
+    augenWurf1 = soundDe[wuerfel1 - 1];
+    augenWurf2 = soundDe[wuerfel2 - 1];
   }
   if (wuerfel1 == wuerfel2) {
     res = fourBlanks + ppic1 + twoBlanks + ppic2;
