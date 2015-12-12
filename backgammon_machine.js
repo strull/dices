@@ -264,7 +264,7 @@ function drawEyeChart() {
 	labels: [0],
 	datasets: [
 	{
-	  label: "Augen Player1",
+	  label: " Augen Player1",
 	  fillColor: "rgba(220,220,220,0.2)",
 	  strokeColor: "rgba(220,220,220,1)",
 	  pointColor: "rgba(220,220,220,1)",
@@ -272,7 +272,7 @@ function drawEyeChart() {
 	  data: [0]
 	},
 	{
-	  label: "Augen Player2",
+	  label: " Augen Player2",
 	  fillColor: "rgba(151,187,205,0.2)",
 	  strokeColor: "rgba(151,187,205,1)",
 	  pointColor: "rgba(151,187,205,1)",
@@ -283,6 +283,7 @@ function drawEyeChart() {
       },
       latestLabel = startingData.labels[0];
   eyeChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
+  document.getElementById('js-legend').innerHTML = eyeChart.generateLegend();
 }
 
 function drawScoreChart() {

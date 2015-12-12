@@ -19,8 +19,8 @@
     <label for="wurfLabel" class="chartTitle">
       Wurf&nbsp;&nbsp;
     </label>
-    <input name="player1" id="player1" type="text" size="10" min="1" max="10" step="1">
-    <input name="player2" id="player2" type="text" size="10" min="1" max="10" step="1">
+    <input name="player1" id="player1" type="text" value="Player1" size="10" min="1" max="10" step="1">
+    <input name="player2" id="player2" type="text" value="Player2" size="10" min="1" max="10" step="1">
     <div class="wurf" name="wurf" id="wurfDiv">
       <p id="wurf"></p>
     </div>
@@ -85,6 +85,9 @@
 	<a href="http://localhost/wuerfel/dbInfo.pl">DB infos</a><br><br>
 	<div id="ZeitBox01"><div id="ZeitAnzeige"></div></div>
       </label>
+    </div>
+    <div class="legend" name="legend" id="legend">
+	<div id="js-legend" class="chart-legend"></div>
     </div>
   </form>
 </div>
