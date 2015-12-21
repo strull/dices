@@ -54,6 +54,10 @@ function verdoppeln() {
   document.getElementById("verdoppler").innerHTML = plotVerdoppler();
 }
 
+function halfVerdoppeln() {
+  document.getElementById("verdoppler").innerHTML = halfVerdoppler();
+}
+
 function wuerfeln() {
   document.getElementById('wurf').innerHTML += wurf();
   if (counter > 32) {
@@ -100,7 +104,7 @@ function wurf() {
     punktePlayer1 = punktePlayer1 + (wuerfel1 + wuerfel2) * pasch;
     var player1 = document.getElementById("player1").value;
     if (!player1) {
-      document.getElementById('augenPlayer1').innerHTML = 'Augen:  ' + punktePlayer1;
+      document.getElementById('augenPlayer1').innerHTML += 'Augen:  ' + punktePlayer1;
     } else {
       document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
     }
@@ -175,6 +179,20 @@ function plotVerdoppler() {
     return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="79" y="85">' + verdoppler + "</text></g></svg>";
   } else {
     return "So weit verdoppeln ist verboten... ein Wuerfel explodiert...<br>" + '<img src="wuerfel_explodiert.jpg">';
+  }
+}
+
+function halfVerdoppler() {
+  verdoppler = verdoppler / 2;
+  if (verdoppler >= 1 && verdoppler <= 9) {
+    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="100" y="85">' + verdoppler + "</text></g></svg>";
+  } else if (verdoppler >= 10 && verdoppler <= 99) {
+    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="90" y="85">' + verdoppler + "</text></g></svg>";
+  } else if (verdoppler >= 100 && verdoppler <= 999) {
+    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="79" y="85">' + verdoppler + "</text></g></svg>";
+  } else {
+    verdoppler = 1;
+    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="100" y="85">' + verdoppler + "</text></g></svg>";
   }
 }
 
@@ -258,13 +276,15 @@ function resetVerdoppler() {
 }
 
 function drawEyeChart() {
+  var player1 = document.getElementById("player1").value;
+  var player2 = document.getElementById("player2").value;
   var canvas = document.getElementById('eyeChart'),
       ctx = canvas.getContext('2d'),
       startingData = {
 	labels: [0],
 	datasets: [
 	{
-	  label: " Augen Player1",
+	  label: " Augen " + player1,
 	  fillColor: "rgba(220,220,220,0.2)",
 	  strokeColor: "rgba(220,220,220,1)",
 	  pointColor: "rgba(220,220,220,1)",
@@ -272,7 +292,7 @@ function drawEyeChart() {
 	  data: [0]
 	},
 	{
-	  label: " Augen Player2",
+	  label: " Augen " + player2,
 	  fillColor: "rgba(151,187,205,0.2)",
 	  strokeColor: "rgba(151,187,205,1)",
 	  pointColor: "rgba(151,187,205,1)",
@@ -362,11 +382,6 @@ function displayTime() {
 }
 window.setTimeout('displayTime()',1000);
 
-function initGammonBackgammon() {
-  document.getElementById('gammon').checked = false;
-  document.getElementById('backgammon').checked = false;
-}
-
 function initAugenPlayer() {
   var player1 = document.getElementById("player1").value;
   if (!player1) {
@@ -389,7 +404,7 @@ function neuesSpiel() {
   resetVerdoppler();
   drawEyeChart();
   drawPaschChart();
-  initGammonBackgammon();
+  document.getElementById('normal').checked = true;
 }
 
 function onload() {
@@ -398,4 +413,16 @@ function onload() {
   initAugenPlayer();
   drawPaschChart();
   drawScoreChart();
+}
+
+function onchangePlayer1() {
+  var player1 = document.getElementById("player1").value;
+  document.getElementById('augenPlayer1').innerHTML = "Augen " + player1 + ": " + punktePlayer1;
+  document.getElementById('player1Wins').value = player1 + " gewinnt";
+}
+
+function onchangePlayer2() {
+  var player2 = document.getElementById("player2").value;
+  document.getElementById('augenPlayer2').innerHTML = "Augen " + player2 + ": " + punktePlayer2;
+  document.getElementById('player2Wins').value = player2 + " gewinnt";
 }

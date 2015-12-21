@@ -19,8 +19,8 @@
     <label for="wurfLabel" class="chartTitle">
       Wurf&nbsp;&nbsp;
     </label>
-    <input name="player1" id="player1" type="text" value="Player1" size="10" min="1" max="10" step="1">
-    <input name="player2" id="player2" type="text" value="Player2" size="10" min="1" max="10" step="1">
+    <input name="player1" id="player1" type="text" value="Player1" onchange="onchangePlayer1()" size="10" min="1" max="10" step="1">
+    <input name="player2" id="player2" type="text" value="Player2" onchange="onchangePlayer2()" size="10" min="1" max="10" step="1">
     <div class="wurf" name="wurf" id="wurfDiv">
       <p id="wurf"></p>
     </div>
@@ -44,12 +44,14 @@
       </label>
       <input class="buttonTransparent" type="button" title="ALT-v" accesskey="v" value="" onclick="verdoppeln()">
       <p id="verdoppler"></p>
-      <input class="buttonNormal" type="button" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
-      <input class="buttonNormal" type="button" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)"><br><br>
+      <input class="buttonNormal" type="button" id="player1Wins" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
+      <input class="buttonNormal" type="button" id="player2Wins" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)">
+      <input class="buttonNormal" type="button" title="ALT-u" accesskey="u" value="Verdoppler halbieren" onclick="halfVerdoppeln()"><br><br>
       <label for="Verdoppler" class="text">
+      Spiel endet...
+      <input type="Radio" id="normal" checked="true" name="gammon"> normal 
       <input type="Radio" id="gammon" name="gammon"> gammon 
-      <input type="Radio" id="backgammon" name="gammon"> backgammon<br><br>
-      <input class="buttonNormal" type="button" title="ALT-i" accesskey="i" value="Init gammon/backgammon" onclick="initGammonBackgammon()"><br>
+      <input type="Radio" id="backgammon" name="gammon"> backgammon<br>
     </label>
       <p id="scorePlayer1"></p>
       <input type="hidden" name="scorePlayer1hidden" >
