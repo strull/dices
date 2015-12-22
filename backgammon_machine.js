@@ -104,7 +104,7 @@ function wurf() {
     punktePlayer1 = punktePlayer1 + (wuerfel1 + wuerfel2) * pasch;
     var player1 = document.getElementById("player1").value;
     if (!player1) {
-      document.getElementById('augenPlayer1').innerHTML += 'Augen:  ' + punktePlayer1;
+      document.getElementById('augenPlayer1').innerHTML = 'Augen:  ' + punktePlayer1;
     } else {
       document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
     }
@@ -203,7 +203,7 @@ function playerwins(player) {
       scorePlayer1 = scorePlayer1 + (verdoppler * 2);
     }
     else if (document.getElementById('backgammon').checked) { 
-      scorePlayer1 = scorePlayer1 + (verdoppler * 4);
+      scorePlayer1 = scorePlayer1 + (verdoppler * 3);
     } else {
       scorePlayer1 = scorePlayer1 + verdoppler;
     }
@@ -220,7 +220,7 @@ function playerwins(player) {
       scorePlayer2 = scorePlayer2 + (verdoppler * 2);
     }
     else if (document.getElementById('backgammon').checked) { 
-      scorePlayer2 = scorePlayer2 + (verdoppler * 4);
+      scorePlayer2 = scorePlayer2 + (verdoppler * 3);
     } else {
       scorePlayer2 = scorePlayer2 + verdoppler;
     }
