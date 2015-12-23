@@ -34,6 +34,12 @@ var round = 0;
 
 var Wochentag = new Array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
 
+var verdopplerEinstellig = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="100" y="85">';
+
+var verdopplerZweistellig = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="90" y="85">';
+
+var verdopplerDreistellig = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="79" y="85">';
+
 var soundlocked;
 var audioFiles = [];
 var soundEn = [];
@@ -172,11 +178,11 @@ function plotVerdoppler() {
     verdoppler = 1;
   }
   if (verdoppler < 9) {
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="100" y="85">' + verdoppler + "</text></g></svg>";
+    return verdopplerEinstellig + verdoppler + "</text></g></svg>";
   } else if (verdoppler >= 10 && verdoppler <= 99) {
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="90" y="85">' + verdoppler + "</text></g></svg>";
+    return verdopplerZweistellig + verdoppler + "</text></g></svg>";
   } else if (verdoppler >= 100 && verdoppler <= 999) {
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="79" y="85">' + verdoppler + "</text></g></svg>";
+    return verdopplerDreistellig + verdoppler + "</text></g></svg>";
   } else {
     return "So weit verdoppeln ist verboten... ein Wuerfel explodiert...<br>" + '<img src="wuerfel_explodiert.jpg">';
   }
@@ -185,14 +191,14 @@ function plotVerdoppler() {
 function halfVerdoppler() {
   verdoppler = verdoppler / 2;
   if (verdoppler >= 1 && verdoppler <= 9) {
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="100" y="85">' + verdoppler + "</text></g></svg>";
+    return verdopplerEinstellig + verdoppler + "</text></g></svg>";
   } else if (verdoppler >= 10 && verdoppler <= 99) {
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="90" y="85">' + verdoppler + "</text></g></svg>";
+    return verdopplerZweistellig + verdoppler + "</text></g></svg>";
   } else if (verdoppler >= 100 && verdoppler <= 999) {
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="79" y="85">' + verdoppler + "</text></g></svg>";
+    return verdopplerDreistellig + verdoppler + "</text></g></svg>";
   } else {
     verdoppler = 1;
-    return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="100" y="85">' + verdoppler + "</text></g></svg>";
+    return verdopplerEinstellig + verdoppler + "</text></g></svg>";
   }
 }
 
