@@ -66,7 +66,7 @@ function halfVerdoppeln() {
 
 function wuerfeln() {
   document.getElementById('wurf').innerHTML += wurf();
-  if (counter > 32) {
+  if (counter > 26) {
     var elem = document.getElementById('wurf');
     elem.scrollTop = elem.scrollHeight;
   }
@@ -79,6 +79,8 @@ function wurf() {
   var pic2 = '<img src="' + wuerfel2 + '.png">';
   var ppic1 = '<img src="p' +wuerfel1 + '.png">';
   var ppic2 = '<img src="p' +wuerfel2 + '.png">';
+  var bpic1 = '<img src="' +wuerfel1 + 'b.png">';
+  var bpic2 = '<img src="' +wuerfel2 + 'b.png">';
   var res;
   if (document.getElementById('en').checked) {
     augenWurf1 = soundEn[wuerfel1 - 1];
@@ -87,6 +89,7 @@ function wurf() {
     augenWurf1 = soundDe[wuerfel1 - 1];
     augenWurf2 = soundDe[wuerfel2 - 1];
   }
+  document.getElementById('aktuellerWurf').innerHTML = bpic1 + "&nbsp;" + bpic2;
   if (wuerfel1 == wuerfel2) {
     res = fourBlanks + ppic1 + twoBlanks + ppic2;
   } else {
@@ -411,6 +414,7 @@ function neuesSpiel() {
   drawEyeChart();
   drawPaschChart();
   document.getElementById('normal').checked = true;
+  document.getElementById('aktuellerWurf').innerHTML = "";
 }
 
 function onload() {
@@ -431,4 +435,8 @@ function onchangePlayer2() {
   var player2 = document.getElementById("player2").value;
   document.getElementById('augenPlayer2').innerHTML = "Augen " + player2 + ": " + punktePlayer2;
   document.getElementById('player2Wins').value = player2 + " gewinnt";
+}
+
+function test() {
+  alert("Test");
 }
