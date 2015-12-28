@@ -40,6 +40,8 @@ var verdopplerZweistellig = '<svg xmlns="http://www.w3.org/2000/svg" version="1.
 
 var verdopplerDreistellig = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g><rect x="65" y="20" rx="20" ry="20" width="100" height="100" style="fill:grey;stroke:black;stroke-width:5;opacity:0.5"/><text fill="#ffffff" font-size="45" font-family="Verdana" x="79" y="85">';
 
+var wurfHistorie = [];
+
 var soundlocked;
 var audioFiles = [];
 var soundEn = [];
@@ -75,6 +77,8 @@ function wuerfeln() {
 function wurf() {
   var wuerfel1 = Math.ceil(Math.random() * 6);
   var wuerfel2 = Math.ceil(Math.random() * 6);
+  wurfHistorie.push(wuerfel1,wuerfel2);
+  document.strullboss.wurfHistoriehidden.value = wurfHistorie;
   var pic1 = '<img src="' + wuerfel1 + '.png">';
   var pic2 = '<img src="' + wuerfel2 + '.png">';
   var ppic1 = '<img src="p' +wuerfel1 + '.png">';
@@ -248,6 +252,7 @@ function playerwins(player) {
     scoreChart.datasets[1].bars[0].value = scorePlayer2;
     scoreChart.update();
   } else {
+    scoreChart.removeData();
     scoreChart.addData([scorePlayer1, scorePlayer2], "round " + round);
   }
 }
@@ -340,7 +345,7 @@ function drawScoreChart() {
 	]
       },
       latestLabel = startingData.labels[0];
-  scoreChart = new Chart(ctx).Bar(startingData, {animationSteps: 15});
+  scoreChart = new Chart(ctx).Bar(startingData, {animationSteps: 1});
 }
 
 function drawPaschChart() {

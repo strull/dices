@@ -16,6 +16,7 @@ $punktePlayer1 = $q -> param('punktePlayer1hidden');
 $punktePlayer2 = $q -> param('punktePlayer2hidden');
 $paschsPlayer1 = $q -> param('paschsPlayer1hidden');
 $paschsPlayer2 = $q -> param('paschsPlayer2hidden');
+$wurfHistorie = $q -> param('wurfHistoriehidden');
 
 my $driver   = "SQLite"; 
 my $database = "backgammon";
@@ -26,9 +27,9 @@ my $userid = "";
 my $password = "";
 my $dbh = DBI->connect($dsn, $userid, $password, { RaiseError => 1 }) or die $DBI::errstr;
 
-my $SQL_Statement = 'INSERT INTO results (id, DATETIME, player1, player2, scorePlayer1, scorePlayer2, augenPlayer1,augenPlayer2,paschsPlayer1,paschsPlayer2) VALUES (?,?,?,?,?,?,?,?,?,?)';
+my $SQL_Statement = 'INSERT INTO results (id, DATETIME, player1, player2, scorePlayer1, scorePlayer2, augenPlayer1,augenPlayer2,paschsPlayer1,paschsPlayer2,wurfHistorie) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
 my $Abfrage = $dbh->prepare($SQL_Statement);
-$Abfrage->execute($null,$dt_mysql,$player1,$player2,$scorePlayer1,$scorePlayer2,$punktePlayer1,$punktePlayer2,$paschsPlayer1,$paschsPlayer2);
+$Abfrage->execute($null,$dt_mysql,$player1,$player2,$scorePlayer1,$scorePlayer2,$punktePlayer1,$punktePlayer2,$paschsPlayer1,$paschsPlayer2,$wurfHistorie);
 $Abfrage->finish();
 
 print $q->header('text/plain');
