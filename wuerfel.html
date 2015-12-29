@@ -15,7 +15,9 @@
     <label for="copyright" class="text">&copy;E1, E8 (2015)</label><br><br>
     <img src="wuerfel.jpg" width="138" height="120" alt="Wuerfel"><br><br>
     <button type="button" title="ALT-w" accesskey="w" onclick="wuerfeln()"><u>W</u>ürfeln</button>
-    <button type="button" title="ALT-n" accesskey="n" onclick="neuesSpiel()"><u>N</u>eues Spiel</button><br><br>
+    <button type="button" title="ALT-n" accesskey="n" onclick="neuesSpiel()"><u>N</u>eues Game</button>
+    <button type="submit" title="ALT-s" accesskey="s"><u>S</u>ave Game</button>
+    <button type="button" title="ALT-m" accesskey="m" onclick="neuesMatch()">Neues <u>M</u>atch</button><br><br>
     <input name="player1" id="player1" type="text" value="Player1" onchange="onchangePlayer1()" size="10" min="1" max="10" step="1">
     <input name="player2" id="player2" type="text" value="Player2" onchange="onchangePlayer2()" size="10" min="1" max="10" step="1">
     <div class="aktuellerWurf" name="aktuellerWurf" id="aktuellerWurfDiv">
@@ -55,32 +57,23 @@
       <input type="Radio" id="gammon" name="gammon"> gammon 
       <input type="Radio" id="backgammon" name="gammon"> backgammon<br>
     </label>
+    <br><br>
+      <label for="scoreChart" class="chartTitle">
+	Score<br>
       <p id="scorePlayer1"></p>
       <input type="hidden" name="scorePlayer1hidden" >
       <p id="scorePlayer2"></p>
       <input type="hidden" name="scorePlayer2hidden" >
-      <label for="scoreChart" class="chartTitle">
-	Score<br>
 	<canvas id="scoreChart" width="250" height="250"></canvas>
       </label><br><br>
-      <input class="buttonNormal" type="button" title="ALT-r" accesskey="r" value="Reset Scores" onclick="resetScore();drawScoreChart()">
-      <input name="submit" type="submit" value="Save Result"><br><br>
     </div>
     <div class="statistik" name="statistik" id="statistik">
-      <p id="punktePlayer1"></p>
-      <input type="hidden" name="punktePlayer1hidden" >
-      <p id="punktePlayer2"></p>
-      <input type="hidden" name="punktePlayer2hidden" >
       <label for = "eyeChart" class="chartTitle">
 	Augen<br>
 	<canvas id="eyeChart" width="400" height="400"></canvas>
       </label>
       <p id="augenPlayer1" class="text"></p>
       <p id="augenPlayer2" class="text"></p>
-      <p id="paschsPlayer1"></p>
-      <input type="hidden" name="paschsPlayer1hidden" >
-      <p id="paschsPlayer2"></p>
-      <input type="hidden" name="paschsPlayer2hidden" >
       <label for = "paschChart" class="chartTitle">
 	Paschs<br>
 	<canvas id="paschChart" width="250" height="250"></canvas>

@@ -77,8 +77,12 @@ function wuerfeln() {
 function wurf() {
   var wuerfel1 = Math.ceil(Math.random() * 6);
   var wuerfel2 = Math.ceil(Math.random() * 6);
-  wurfHistorie.push(wuerfel1,wuerfel2);
-  document.strullboss.wurfHistoriehidden.value = wurfHistorie;
+  if (counter === 0 && wuerfel1 == wuerfel2) {
+    return wurf();
+  } else {
+    wurfHistorie.push(wuerfel1,wuerfel2);
+    document.strullboss.wurfHistoriehidden.value = wurfHistorie;
+  }
   var pic1 = '<img src="' + wuerfel1 + '.png">';
   var pic2 = '<img src="' + wuerfel2 + '.png">';
   var ppic1 = '<img src="p' +wuerfel1 + '.png">';
@@ -109,7 +113,6 @@ function wurf() {
     anzahlWuerfe++;
     if (wuerfel1 == wuerfel2) {
       paschsPlayer1++;
-      document.strullboss.paschsPlayer1hidden.value = paschsPlayer1;
       paschChart.removeData();
       paschChart.addData([paschsPlayer1, paschsPlayer2], "");
       pasch++;
@@ -121,7 +124,6 @@ function wurf() {
     } else {
       document.getElementById('augenPlayer1').innerHTML = 'Augen ' + player1 +': ' + punktePlayer1;
     }
-    document.strullboss.punktePlayer1hidden.value = punktePlayer1;
     eyeChart.addData([punktePlayer1, punktePlayer2], anzahlWuerfe);
     if (anzahlWuerfe < 10) {
       return fourBlanks + anzahlWuerfe + twoBlanks + res + fourBlanks;
@@ -131,7 +133,6 @@ function wurf() {
   } else {
     if (wuerfel1 == wuerfel2) {
       paschsPlayer2++;
-      document.strullboss.paschsPlayer2hidden.value = paschsPlayer2;
       paschChart.removeData();
       paschChart.addData([paschsPlayer1, paschsPlayer2], "");
       pasch++;
@@ -143,7 +144,6 @@ function wurf() {
     } else {
       document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
     }
-    document.strullboss.punktePlayer2hidden.value = punktePlayer2;
     eyeChart.datasets[1].points[anzahlWuerfe].value = punktePlayer2;
     eyeChart.update();
     return res + br();
@@ -220,6 +220,8 @@ function playerwins(player) {
     } else {
       scorePlayer1 = scorePlayer1 + verdoppler;
     }
+    var player1 = document.getElementById("player1").value;
+    document.getElementById('scorePlayer1').innerHTML = 'Score ' + player1 + ': ' + scorePlayer1;
     if (scorePlayer1 >= punkte) {
       var player1 = document.getElementById("player1").value;
       alert("Game over! " + player1 + " wins.");
@@ -237,6 +239,8 @@ function playerwins(player) {
     } else {
       scorePlayer2 = scorePlayer2 + verdoppler;
     }
+    var player2 = document.getElementById("player2").value;
+    document.getElementById('scorePlayer2').innerHTML = 'Score ' + player2 + ': ' + scorePlayer2;
     if (scorePlayer2 >= punkte) {
       var player2 = document.getElementById("player2").value;
       alert("Game over! " + player2 + " wins.");
@@ -252,7 +256,6 @@ function playerwins(player) {
     scoreChart.datasets[1].bars[0].value = scorePlayer2;
     scoreChart.update();
   } else {
-    scoreChart.removeData();
     scoreChart.addData([scorePlayer1, scorePlayer2], "round " + round);
   }
 }
@@ -272,16 +275,6 @@ function resetGameAndStats() {
   } else {
     document.getElementById('augenPlayer2').innerHTML = 'Augen ' + player2 +': ' + punktePlayer2;
   }
-}
-
-function resetScore() {
-  scorePlayer1 = scorePlayer2 = 0;
-  verdoppler = 0;
-  verdoppeln();
-  for (i=0;i<round;i++){
-    scoreChart.removeData();
-  }
-  round = 0;
 }
 
 function resetVerdoppler() {
@@ -411,6 +404,21 @@ function initAugenPlayer() {
   }
 }
 
+function initScorePlayer() {
+  var player1 = document.getElementById("player1").value;
+  if (!player1) {
+    document.getElementById('scorePlayer1').innerHTML = 'Score:  ' + scorePlayer1;
+  } else {
+    document.getElementById('scorePlayer1').innerHTML = 'Score ' + player1 +': ' + scorePlayer1;
+  }
+  var player2 = document.getElementById("player2").value;
+  if (!player2) {
+    document.getElementById('scorePlayer2').innerHTML = 'Score:  ' + scorePlayer2;
+  } else {
+    document.getElementById('scorePlayer2').innerHTML = 'Score ' + player2 +': ' + scorePlayer2;
+  }
+}
+
 function neuesSpiel() {
   eyeChart.destroy();
   paschChart.destroy();
@@ -422,10 +430,15 @@ function neuesSpiel() {
   document.getElementById('aktuellerWurf').innerHTML = "";
 }
 
+function neuesMatch() {
+  window.location.reload();
+}
+
 function onload() {
   verdoppeln();
   drawEyeChart();
   initAugenPlayer();
+  initScorePlayer();
   drawPaschChart();
   drawScoreChart();
 }
@@ -433,12 +446,14 @@ function onload() {
 function onchangePlayer1() {
   var player1 = document.getElementById("player1").value;
   document.getElementById('augenPlayer1').innerHTML = "Augen " + player1 + ": " + punktePlayer1;
+  document.getElementById('scorePlayer1').innerHTML = "Score " + player1 + ": " + scorePlayer1;
   document.getElementById('player1Wins').value = player1 + " gewinnt";
 }
 
 function onchangePlayer2() {
   var player2 = document.getElementById("player2").value;
   document.getElementById('augenPlayer2').innerHTML = "Augen " + player2 + ": " + punktePlayer2;
+  document.getElementById('scorePlayer2').innerHTML = "Score " + player2 + ": " + scorePlayer2;
   document.getElementById('player2Wins').value = player2 + " gewinnt";
 }
 
