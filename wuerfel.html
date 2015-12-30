@@ -18,8 +18,8 @@
     <button type="button" title="ALT-n" accesskey="n" onclick="neuesSpiel()"><u>N</u>eues Game</button>
     <button type="submit" title="ALT-s" accesskey="s"><u>S</u>ave Game</button>
     <button type="button" title="ALT-m" accesskey="m" onclick="neuesMatch()">Neues <u>M</u>atch</button><br><br>
-    <input name="player1" id="player1" type="text" value="Player1" onchange="onchangePlayer1()" size="10" min="1" max="10" step="1">
-    <input name="player2" id="player2" type="text" value="Player2" onchange="onchangePlayer2()" size="10" min="1" max="10" step="1">
+    <input name="player1" id="player1" type="text" value="Player1" onchange="onchangePlayer(1)" size="10" min="1" max="10" step="1">
+    <input name="player2" id="player2" type="text" value="Player2" onchange="onchangePlayer(2)" size="10" min="1" max="10" step="1">
     <div class="aktuellerWurf" name="aktuellerWurf" id="aktuellerWurfDiv">
       <p id="aktuellerWurf"></p>
       <input class="buttonWurfTransparent" type="button" title="ALT-w" accesskey="w" value="" onclick="wuerfeln()">
@@ -50,12 +50,12 @@
       <p id="verdoppler"></p>
       <input class="buttonNormal" type="button" id="player1Wins" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
       <input class="buttonNormal" type="button" id="player2Wins" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)">
-      <input class="buttonNormal" type="button" title="ALT-V" accesskey="V" value="Verdoppler halbieren" onclick="halfVerdoppeln()"><br><br>
+      <input class="buttonNormal" type="button" title="ALT-h" accesskey="h" value="Verdoppler halbieren" onclick="halfVerdoppeln()"><br><br>
       <label for="Verdoppler" class="text">
       Spiel endet...
-      <input type="Radio" id="normal" checked="true" name="gammon"> normal 
-      <input type="Radio" id="gammon" name="gammon"> gammon 
-      <input type="Radio" id="backgammon" name="gammon"> backgammon<br>
+      <input type="Radio" id="normal" checked="true" name="gammon" accesskey="p"> normal 
+      <input type="Radio" id="gammon" name="gammon" accesskey="g"> gammon 
+      <input type="Radio" id="backgammon" name="gammon" accesskey="b"> backgammon<br>
     </label>
     <br><br>
       <label for="scoreChart" class="chartTitle">
@@ -85,6 +85,22 @@
     </div>
     <div class="legend" name="legend" id="legend">
 	<div id="js-legend" class="chart-legend"></div>
+    </div>
+    <div class="legendAccesskeys" name="legendAccesskeys" id="legendAccesskeys">
+      Bitte beachten, dass Access Keys browser- und betriebsystemabhängig sind!
+      Mehr dazu <a href="https://en.wikipedia.org/wiki/Access_key">hier</a>.<br>
+      Beispielhaft für Chrome unter Windows und Linux:<br><br>
+      ALT-w: wuerfeln<br>
+      ALT-n: neues Spiel<br>
+      ALT-s: save Game<br>
+      ALT-m: neues Match<br>
+      ALT-v: verdoppeln<br>
+      ALT-h: Verdoppler halbieren<br>
+      ALT-o: Player1 gewinnt<br>
+      ALT-t: Player2 gewinnt<br>
+      ALT-p: Spiel endet normal<br>
+      ALT-g: Spiel endet gammon<br>
+      ALT-b: Spiel endet backgammon
     </div>
   </form>
 </div>

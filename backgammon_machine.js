@@ -157,7 +157,7 @@ function sayWurf() {
 
 function play(file) {
   if (!document.getElementById('on').checked) return;
-  if (file == undefined) return;
+  if (file === undefined) return;
   if (soundlocked) {
     audioFiles.push(file);
   } else {
@@ -169,7 +169,7 @@ function play(file) {
 function onAudioEnded(){
   soundlocked = false;
   play(audioFiles.shift());
-};
+}
 
 function br() {
   return "<br>";
@@ -223,7 +223,6 @@ function playerwins(player) {
     var player1 = document.getElementById("player1").value;
     document.getElementById('scorePlayer1').innerHTML = 'Score ' + player1 + ': ' + scorePlayer1;
     if (scorePlayer1 >= punkte) {
-      var player1 = document.getElementById("player1").value;
       alert("Game over! " + player1 + " wins.");
     } else {
       document.strullboss.scorePlayer1hidden.value = scorePlayer1;
@@ -242,7 +241,6 @@ function playerwins(player) {
     var player2 = document.getElementById("player2").value;
     document.getElementById('scorePlayer2').innerHTML = 'Score ' + player2 + ': ' + scorePlayer2;
     if (scorePlayer2 >= punkte) {
-      var player2 = document.getElementById("player2").value;
       alert("Game over! " + player2 + " wins.");
     } else {
       document.strullboss.scorePlayer2hidden.value = scorePlayer2;
@@ -443,20 +441,16 @@ function onload() {
   drawScoreChart();
 }
 
-function onchangePlayer1() {
-  var player1 = document.getElementById("player1").value;
-  document.getElementById('augenPlayer1').innerHTML = "Augen " + player1 + ": " + punktePlayer1;
-  document.getElementById('scorePlayer1').innerHTML = "Score " + player1 + ": " + scorePlayer1;
-  document.getElementById('player1Wins').value = player1 + " gewinnt";
-}
-
-function onchangePlayer2() {
-  var player2 = document.getElementById("player2").value;
-  document.getElementById('augenPlayer2').innerHTML = "Augen " + player2 + ": " + punktePlayer2;
-  document.getElementById('scorePlayer2').innerHTML = "Score " + player2 + ": " + scorePlayer2;
-  document.getElementById('player2Wins').value = player2 + " gewinnt";
-}
-
-function test() {
-  alert("Test");
+function onchangePlayer(player) {
+  if (player == 1) {
+    var player1 = document.getElementById("player1").value;
+    document.getElementById('augenPlayer1').innerHTML = "Augen " + player1 + ": " + punktePlayer1;
+    document.getElementById('scorePlayer1').innerHTML = "Score " + player1 + ": " + scorePlayer1;
+    document.getElementById('player1Wins').value = player1 + " gewinnt";
+  } else {
+    var player2 = document.getElementById("player2").value;
+    document.getElementById('augenPlayer2').innerHTML = "Augen " + player2 + ": " + punktePlayer2;
+    document.getElementById('scorePlayer2').innerHTML = "Score " + player2 + ": " + scorePlayer2;
+    document.getElementById('player2Wins').value = player2 + " gewinnt";
+  }
 }
