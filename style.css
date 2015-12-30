@@ -129,3 +129,6 @@ buttonWurfTransparent
   color:#5F5F5F;
   font-size: 12px;
 }
+input[type="number"] {
+   width:40px;
+}

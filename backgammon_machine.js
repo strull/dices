@@ -280,6 +280,22 @@ function resetGameAndStats() {
   }
 }
 
+function resetScore() {
+  scorePlayer1 = scorePlayer2 = round = 0;
+  var player1 = document.getElementById("player1").value;
+  if (!player1) {
+    document.getElementById('scorePlayer1').innerHTML = 'Punkte: ' + scorePlayer1;
+  } else {
+    document.getElementById('scorePlayer1').innerHTML = 'Punkte ' + player1 + ': ' + scorePlayer1;
+  }
+  var player2 = document.getElementById("player2").value;
+  if (!player2) {
+    document.getElementById('scorePlayer2').innerHTML = 'Punkte: ' + scorePlayer2;
+  } else {
+    document.getElementById('scorePlayer2').innerHTML = 'Punkte ' + player2 + ': ' + scorePlayer2;
+  }
+}
+
 function resetVerdoppler() {
   verdoppler = 0;
   verdoppeln();
@@ -422,15 +438,11 @@ function initScorePlayer() {
   }
 }
 
-function neuesMatch() {
-  window.location.reload();
-}
-
 function onchangePlayer(player) {
   var playerName = document.getElementById("player" + player).value;
   document.getElementById('augenPlayer' + player).innerHTML = "Augen " + playerName + ": " + window["punktePlayer" + player];
   document.getElementById('scorePlayer' + player).innerHTML = "Punkte " + playerName + ": " + window["scorePlayer" + player];
-  document.getElementById('player' + player + 'gewinnt!').value = playerName + " gewinnt";
+  document.getElementById('player' + player + 'Wins').value = playerName + " gewinnt";
 }
 
 function neuesSpiel() {
@@ -440,6 +452,20 @@ function neuesSpiel() {
   resetVerdoppler();
   drawEyeChart();
   drawPaschChart();
+  document.getElementById('normal').checked = true;
+  document.getElementById('aktuellerWurf').innerHTML = "";
+}
+
+function neuesMatch() {
+  eyeChart.destroy();
+  paschChart.destroy();
+  scoreChart.destroy();
+  resetScore();
+  resetGameAndStats();
+  resetVerdoppler();
+  drawEyeChart();
+  drawPaschChart();
+  drawScoreChart();
   document.getElementById('normal').checked = true;
   document.getElementById('aktuellerWurf').innerHTML = "";
 }
