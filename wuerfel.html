@@ -48,16 +48,23 @@
       </label>
       <input class="buttonTransparent" type="button" title="ALT-v" accesskey="v" value="" onclick="verdoppeln()">
       <p id="verdoppler"></p>
-      <input class="buttonNormal" type="button" id="player1Wins" title="ALT-o" accesskey="o" value="Spieler 1 gewinnt" onclick="playerwins(1)">
-      <input class="buttonNormal" type="button" id="player2Wins" title="ALT-t" accesskey="t" value="Spieler 2 gewinnt" onclick="playerwins(2)">
-      <input class="buttonNormal" type="button" title="ALT-h" accesskey="h" value="Verdoppler halbieren" onclick="halfVerdoppeln()"><br><br>
+    <div class="verdoppplerButtons" name="verdoppplerButtons" id="verdoppplerButtons">
+      <input class="buttonNormal" type="button" id="player1AcceptsVerdoppler" title="ALT-x" accesskey="x" value="Spieler1 akz. Verdoppler" onclick="playerAcceptsVerdoppler(1)">
+      <br><br>
+      <input class="buttonNormal" type="button" id="player2AcceptsVerdoppler" title="ALT-y" accesskey="y" value="Spieler2 akz. Verdoppler" onclick="playerAcceptsVerdoppler(2)">
+      <br><br>
+      <input class="buttonNormal" type="button" title="ALT-h" accesskey="h" value="Verdoppler ablehnen" onclick="halfVerdoppeln()"><br><br>
+    </div>
       <label for="Verdoppler" class="text">
-      Spiel endet...
+      <p id="verdopplerPossession"></p>
+	Spiel endet...<br>
       <input type="Radio" id="normal" checked="true" name="gammon" accesskey="r"> no<u>r</u>mal 
       <input type="Radio" id="gammon" name="gammon" accesskey="a"> g<u>a</u>mmon 
       <input type="Radio" id="backgammon" name="gammon" accesskey="b"> <u>b</u>ackgammon<br>
-    </label>
-    <br><br>
+    </label><br>
+      <input class="buttonNormal" type="button" id="player1Wins" title="ALT-o" accesskey="o" value="Spieler1 gewinnt" onclick="playerwins(1)">
+      <input class="buttonNormal" type="button" id="player2Wins" title="ALT-t" accesskey="t" value="Spieler2 gewinnt" onclick="playerwins(2)">
+      <br><br>
       <label for="scoreChart" class="chartTitle">
 	Punktestand<br>
       <p id="scorePlayer1"></p>
@@ -92,12 +99,14 @@
       ALT-s: save Game<br>
       ALT-m: neues Match<br>
       ALT-v: verdoppeln<br>
-      ALT-h: Verdoppler halbieren<br>
+      ALT-h: Verdoppler ablehnen<br>
       ALT-o: Spieler1 gewinnt<br>
       ALT-t: Spieler2 gewinnt<br>
       ALT-r: Spiel endet normal<br>
       ALT-a: Spiel endet gammon<br>
-      ALT-b: Spiel endet backgammon<br><br>
+      ALT-b: Spiel endet backgammon<br>
+      ALT-x: Spieler1 akzeptiert Verdoppler<br>
+      ALT-y: Spieler2 akzeptiert Verdoppler<br><br>
       <label for="dbInfo" class="text">
 	<a href="http://localhost/wuerfel/dbInfo.pl">DB infos</a><br><br>
 	<div id="ZeitBox01"><div id="ZeitAnzeige"></div></div>

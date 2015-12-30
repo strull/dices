@@ -254,8 +254,13 @@ function playerwins(player) {
     scoreChart.datasets[1].bars[0].value = scorePlayer2;
     scoreChart.update();
   } else {
-    scoreChart.addData([scorePlayer1, scorePlayer2], "round " + round);
+    scoreChart.addData([scorePlayer1, scorePlayer2], "Runde " + round);
   }
+}
+
+function playerAcceptsVerdoppler(player) {
+  var playerName = document.getElementById("player" + player).value;
+  document.getElementById('verdopplerPossession').innerHTML = "Verdoppler hat: " + playerName;
 }
 
 function handleChangeSpielBis(input) {
@@ -438,11 +443,16 @@ function initScorePlayer() {
   }
 }
 
+function initVerdopplerPossession() {
+  document.getElementById('verdopplerPossession').innerHTML = "Verdoppler hat: Niemand";
+}
+
 function onchangePlayer(player) {
   var playerName = document.getElementById("player" + player).value;
   document.getElementById('augenPlayer' + player).innerHTML = "Augen " + playerName + ": " + window["punktePlayer" + player];
   document.getElementById('scorePlayer' + player).innerHTML = "Punkte " + playerName + ": " + window["scorePlayer" + player];
   document.getElementById('player' + player + 'Wins').value = playerName + " gewinnt";
+  document.getElementById('player' + player + 'AcceptsVerdoppler').value = playerName + " akz. Verdoppler";
 }
 
 function neuesSpiel() {
@@ -450,6 +460,7 @@ function neuesSpiel() {
   paschChart.destroy();
   resetGameAndStats();
   resetVerdoppler();
+  initVerdopplerPossession();
   drawEyeChart();
   drawPaschChart();
   document.getElementById('normal').checked = true;
@@ -463,6 +474,7 @@ function neuesMatch() {
   resetScore();
   resetGameAndStats();
   resetVerdoppler();
+  initVerdopplerPossession();
   drawEyeChart();
   drawPaschChart();
   drawScoreChart();
@@ -475,6 +487,7 @@ function onload() {
   drawEyeChart();
   initAugenPlayer();
   initScorePlayer();
+  initVerdopplerPossession();
   drawPaschChart();
   drawScoreChart();
 }
