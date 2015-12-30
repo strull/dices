@@ -15,11 +15,11 @@
     <label for="copyright" class="text">&copy;E1, E8 (2015)</label><br><br>
     <img src="wuerfel.jpg" width="138" height="120" alt="Wuerfel"><br><br>
     <button type="button" title="ALT-w" accesskey="w" onclick="wuerfeln()"><u>W</u>ürfeln</button>
-    <button type="button" title="ALT-n" accesskey="n" onclick="neuesSpiel()"><u>N</u>eues Game</button>
-    <button type="submit" title="ALT-s" accesskey="s"><u>S</u>ave Game</button>
+    <button type="button" title="ALT-n" accesskey="n" onclick="neuesSpiel()"><u>N</u>eues Spiel</button>
+    <button type="submit" title="ALT-s" accesskey="s">Spiel <u>s</u>peichern</button>
     <button type="button" title="ALT-m" accesskey="m" onclick="neuesMatch()">Neues <u>M</u>atch</button><br><br>
-    <input name="player1" id="player1" type="text" value="Player1" onchange="onchangePlayer(1)" size="10" min="1" max="10" step="1">
-    <input name="player2" id="player2" type="text" value="Player2" onchange="onchangePlayer(2)" size="10" min="1" max="10" step="1">
+    <input name="player1" id="player1" type="text" value="Spieler1" onchange="onchangePlayer(1)" size="10" min="1" max="10" step="1">
+    <input name="player2" id="player2" type="text" value="Spieler2" onchange="onchangePlayer(2)" size="10" min="1" max="10" step="1">
     <div class="aktuellerWurf" name="aktuellerWurf" id="aktuellerWurfDiv">
       <p id="aktuellerWurf"></p>
       <input class="buttonWurfTransparent" type="button" title="ALT-w" accesskey="w" value="" onclick="wuerfeln()">
@@ -36,7 +36,7 @@
 	Spiel bis 
 	<input id="punkte" type="number" min="1" max="25" step="1" value="11" maxlength="3" onchange="handleChangeSpielBis(this)">
 	Punkte<br>
-	Sound&nbsp;&nbsp;&nbsp;
+	Ton&nbsp;&nbsp;&nbsp;
 	<input type="Radio" id="on" name="sound" checked="checked"> ein
 	<input type="Radio" id="off" name="sound"> aus<br>
 	Sprache
@@ -48,8 +48,8 @@
       </label>
       <input class="buttonTransparent" type="button" title="ALT-v" accesskey="v" value="" onclick="verdoppeln()">
       <p id="verdoppler"></p>
-      <input class="buttonNormal" type="button" id="player1Wins" title="ALT-o" accesskey="o" value="Player 1 gewinnt" onclick="playerwins(1)">
-      <input class="buttonNormal" type="button" id="player2Wins" title="ALT-t" accesskey="t" value="Player 2 gewinnt" onclick="playerwins(2)">
+      <input class="buttonNormal" type="button" id="player1Wins" title="ALT-o" accesskey="o" value="Spieler 1 gewinnt" onclick="playerwins(1)">
+      <input class="buttonNormal" type="button" id="player2Wins" title="ALT-t" accesskey="t" value="Spieler 2 gewinnt" onclick="playerwins(2)">
       <input class="buttonNormal" type="button" title="ALT-h" accesskey="h" value="Verdoppler halbieren" onclick="halfVerdoppeln()"><br><br>
       <label for="Verdoppler" class="text">
       Spiel endet...
@@ -59,7 +59,7 @@
     </label>
     <br><br>
       <label for="scoreChart" class="chartTitle">
-	Score<br>
+	Punktestand<br>
       <p id="scorePlayer1"></p>
       <input type="hidden" name="scorePlayer1hidden" >
       <p id="scorePlayer2"></p>
@@ -83,7 +83,8 @@
 	<div id="js-legend" class="chart-legend"></div>
     </div>
     <div class="legendAccesskeys" name="legendAccesskeys" id="legendAccesskeys">
-      Bitte beachten, dass Access Keys browser- und betriebsystemabhängig sind!
+      <b>Hinweis</b><br>
+      Access Keys sind browser- und betriebsystemabhängig!
       Mehr dazu <a href="https://en.wikipedia.org/wiki/Access_key">hier</a>.<br>
       Beispielhaft für Chrome unter Windows und Linux:<br><br>
       ALT-w: wuerfeln<br>
@@ -92,8 +93,8 @@
       ALT-m: neues Match<br>
       ALT-v: verdoppeln<br>
       ALT-h: Verdoppler halbieren<br>
-      ALT-o: Player1 gewinnt<br>
-      ALT-t: Player2 gewinnt<br>
+      ALT-o: Spieler1 gewinnt<br>
+      ALT-t: Spieler2 gewinnt<br>
       ALT-r: Spiel endet normal<br>
       ALT-a: Spiel endet gammon<br>
       ALT-b: Spiel endet backgammon<br><br>

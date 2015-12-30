@@ -221,9 +221,9 @@ function playerwins(player) {
       scorePlayer1 = scorePlayer1 + verdoppler;
     }
     var player1 = document.getElementById("player1").value;
-    document.getElementById('scorePlayer1').innerHTML = 'Score ' + player1 + ': ' + scorePlayer1;
+    document.getElementById('scorePlayer1').innerHTML = 'Punkte ' + player1 + ': ' + scorePlayer1;
     if (scorePlayer1 >= punkte) {
-      alert("Game over! " + player1 + " wins.");
+      alert("Game over! " + player1 + " gewinnt.");
     } else {
       document.strullboss.scorePlayer1hidden.value = scorePlayer1;
       verdoppler = 0;
@@ -239,9 +239,9 @@ function playerwins(player) {
       scorePlayer2 = scorePlayer2 + verdoppler;
     }
     var player2 = document.getElementById("player2").value;
-    document.getElementById('scorePlayer2').innerHTML = 'Score ' + player2 + ': ' + scorePlayer2;
+    document.getElementById('scorePlayer2').innerHTML = 'Punkte ' + player2 + ': ' + scorePlayer2;
     if (scorePlayer2 >= punkte) {
-      alert("Game over! " + player2 + " wins.");
+      alert("Game over! " + player2 + " gewinnt.");
     } else {
       document.strullboss.scorePlayer2hidden.value = scorePlayer2;
       verdoppler = 0;
@@ -320,10 +320,10 @@ function drawScoreChart() {
   var canvas = document.getElementById('scoreChart'),
       ctx = canvas.getContext('2d'),
       startingData = {
-	labels: ["round " + 1],
+	labels: ["Runde " + 1],
 	datasets: [
 	{
-	  label: "Score Player1",
+	  label: "Punkte Spieler1",
 	  fillColor: "rgba(220,220,220,0.2)",
 	  strokeColor: "rgba(220,220,220,1)",
 	  highlightFill: "rgba(220,220,220,0.75)",
@@ -331,7 +331,7 @@ function drawScoreChart() {
 	  data: [0]
 	},
 	{
-	  label: "Score Player2",
+	  label: "Punkte Spieler2",
 	  fillColor: "rgba(151,187,205,0.2)",
 	  strokeColor: "rgba(151,187,205,1)",
 	  highlightFill: "rgba(220,220,220,0.75)",
@@ -351,7 +351,7 @@ function drawPaschChart() {
 	labels: [0],
 	datasets: [
 	{
-	  label: "Paschs Player1",
+	  label: "Paschs Spieler1",
 	  fillColor: "rgba(220,220,220,0.2)",
 	  strokeColor: "rgba(220,220,220,1)",
 	  highlightFill: "rgba(220,220,220,0.75)",
@@ -359,7 +359,7 @@ function drawPaschChart() {
 	  data: [0]
 	},
 	{
-	  label: "Paschs Player2",
+	  label: "Paschs Spieler2",
 	  fillColor: "rgba(151,187,205,0.2)",
 	  strokeColor: "rgba(151,187,205,1)",
 	  highlightFill: "rgba(220,220,220,0.75)",
@@ -410,15 +410,15 @@ function initAugenPlayer() {
 function initScorePlayer() {
   var player1 = document.getElementById("player1").value;
   if (!player1) {
-    document.getElementById('scorePlayer1').innerHTML = 'Score:  ' + scorePlayer1;
+    document.getElementById('scorePlayer1').innerHTML = 'Punkte:  ' + scorePlayer1;
   } else {
-    document.getElementById('scorePlayer1').innerHTML = 'Score ' + player1 +': ' + scorePlayer1;
+    document.getElementById('scorePlayer1').innerHTML = 'Punkte ' + player1 +': ' + scorePlayer1;
   }
   var player2 = document.getElementById("player2").value;
   if (!player2) {
-    document.getElementById('scorePlayer2').innerHTML = 'Score:  ' + scorePlayer2;
+    document.getElementById('scorePlayer2').innerHTML = 'Punkte:  ' + scorePlayer2;
   } else {
-    document.getElementById('scorePlayer2').innerHTML = 'Score ' + player2 +': ' + scorePlayer2;
+    document.getElementById('scorePlayer2').innerHTML = 'Punkte ' + player2 +': ' + scorePlayer2;
   }
 }
 
@@ -428,14 +428,9 @@ function neuesMatch() {
 
 function onchangePlayer(player) {
   var playerName = document.getElementById("player" + player).value;
-  if (player == 1) {
-    document.getElementById('augenPlayer' + player).innerHTML = "Augen " + playerName + ": " + punktePlayer1;
-    document.getElementById('scorePlayer' + player).innerHTML = "Score " + playerName + ": " + scorePlayer1;
-  } else {
-    document.getElementById('augenPlayer' + player).innerHTML = "Augen " + playerName + ": " + punktePlayer2;
-    document.getElementById('scorePlayer' + player).innerHTML = "Score " + playerName + ": " + scorePlayer2;
-  }
-  document.getElementById('player' + player + 'Wins').value = playerName + " gewinnt";
+  document.getElementById('augenPlayer' + player).innerHTML = "Augen " + playerName + ": " + window["punktePlayer" + player];
+  document.getElementById('scorePlayer' + player).innerHTML = "Punkte " + playerName + ": " + window["scorePlayer" + player];
+  document.getElementById('player' + player + 'gewinnt!').value = playerName + " gewinnt";
 }
 
 function neuesSpiel() {
