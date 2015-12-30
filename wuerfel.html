@@ -34,7 +34,7 @@
       </label><br>
       <label for="settings" class="text">
 	Spiel bis 
-	<input id="punkte" type="number" min="1" max="25" step="1" value="11">
+	<input id="punkte" type="number" min="1" max="25" step="1" value="11" maxlength="3" onchange="handleChangeSpielBis(this)">
 	Punkte<br>
 	Sound&nbsp;&nbsp;&nbsp;
 	<input type="Radio" id="on" name="sound" checked="checked"> ein
@@ -78,10 +78,6 @@
 	Paschs<br>
 	<canvas id="paschChart" width="250" height="250"></canvas>
       </label><br>
-      <label for="dbInfo" class="text">
-	<a href="http://localhost/wuerfel/dbInfo.pl">DB infos</a><br><br>
-	<div id="ZeitBox01"><div id="ZeitAnzeige"></div></div>
-      </label>
     </div>
     <div class="legend" name="legend" id="legend">
 	<div id="js-legend" class="chart-legend"></div>
@@ -100,7 +96,11 @@
       ALT-t: Player2 gewinnt<br>
       ALT-p: Spiel endet normal<br>
       ALT-g: Spiel endet gammon<br>
-      ALT-b: Spiel endet backgammon
+      ALT-b: Spiel endet backgammon<br><br>
+      <label for="dbInfo" class="text">
+	<a href="http://localhost/wuerfel/dbInfo.pl">DB infos</a><br><br>
+	<div id="ZeitBox01"><div id="ZeitAnzeige"></div></div>
+      </label>
     </div>
   </form>
 </div>

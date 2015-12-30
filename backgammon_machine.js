@@ -258,6 +258,11 @@ function playerwins(player) {
   }
 }
 
+function handleChangeSpielBis(input) {
+  if (input.value < 0) input.value = 11;
+  if (input.value > 999) input.value = 999;
+}
+
 function resetGameAndStats() {
   document.getElementById('wurf').innerHTML = '';
   punktePlayer1 = punktePlayer2 = anzahlWuerfe = paschsPlayer1 = paschsPlayer2 = counter = 0;
