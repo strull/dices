@@ -16,7 +16,6 @@
     <img src="wuerfel.jpg" width="138" height="120" alt="Wuerfel"><br><br>
     <button type="button" title="ALT-w" accesskey="w" onclick="wuerfeln()"><u>W</u>ürfeln</button>
     <button type="button" title="ALT-n" accesskey="n" onclick="neuesSpiel()"><u>N</u>eues Spiel</button>
-    <button type="submit" title="ALT-s" accesskey="s">Spiel <u>s</u>peichern</button>
     <button type="button" title="ALT-m" accesskey="m" onclick="neuesMatch()">Neues <u>M</u>atch</button><br><br>
     <input name="player1" id="player1" type="text" value="Spieler1" onchange="onchangePlayer(1)" size="10" min="1" max="10" step="1">
     <input name="player2" id="player2" type="text" value="Spieler2" onchange="onchangePlayer(2)" size="10" min="1" max="10" step="1">
@@ -66,10 +65,11 @@
       <input class="buttonNormal" type="button" id="player2Wins" title="ALT-t" accesskey="t" value="Spieler2 gewinnt" onclick="playerwins(2)">
       <br><br>
       <label for="scoreChart" class="chartTitle">
-	Punktestand<br>
-      <p id="scorePlayer1"></p>
+	Spielstand<br>
+      <label for="spielstand" class="spielstand">
+      <p id="spielstand"></p>
+    </label>
       <input type="hidden" name="scorePlayer1hidden" >
-      <p id="scorePlayer2"></p>
       <input type="hidden" name="scorePlayer2hidden" >
 	<canvas id="scoreChart" width="250" height="250"></canvas>
       </label><br><br>
@@ -108,6 +108,7 @@
       ALT-x: Spieler1 akzeptiert Verdoppler<br>
       ALT-y: Spieler2 akzeptiert Verdoppler<br><br>
       <label for="dbInfo" class="text">
+        <button type="submit" title="ALT-s" accesskey="s">Spiel <u>s</u>peichern</button>&nbsp;&nbsp;
 	<a href="http://localhost/wuerfel/dbInfo.pl">DB infos</a><br><br>
 	<div id="ZeitBox01"><div id="ZeitAnzeige"></div></div>
       </label>

@@ -77,6 +77,13 @@ buttonWurfTransparent
   color:#5F5F5F;
   text-align: center;
 }
+.spielstand {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color:#5F5F5F;
+  text-align: center;
+}
 .text {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 12px;

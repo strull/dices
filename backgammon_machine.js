@@ -221,7 +221,7 @@ function playerwins(player) {
       scorePlayer1 = scorePlayer1 + verdoppler;
     }
     var player1 = document.getElementById("player1").value;
-    document.getElementById('scorePlayer1').innerHTML = 'Punkte ' + player1 + ': ' + scorePlayer1;
+    document.getElementById('spielstand').innerHTML = scorePlayer1 + " : " + scorePlayer2;
     if (scorePlayer1 >= punkte) {
       alert("Game over! " + player1 + " gewinnt.");
     } else {
@@ -239,7 +239,7 @@ function playerwins(player) {
       scorePlayer2 = scorePlayer2 + verdoppler;
     }
     var player2 = document.getElementById("player2").value;
-    document.getElementById('scorePlayer2').innerHTML = 'Punkte ' + player2 + ': ' + scorePlayer2;
+    document.getElementById('spielstand').innerHTML = scorePlayer1 + " : " + scorePlayer2;
     if (scorePlayer2 >= punkte) {
       alert("Game over! " + player2 + " gewinnt.");
     } else {
@@ -287,18 +287,7 @@ function resetGameAndStats() {
 
 function resetScore() {
   scorePlayer1 = scorePlayer2 = round = 0;
-  var player1 = document.getElementById("player1").value;
-  if (!player1) {
-    document.getElementById('scorePlayer1').innerHTML = 'Punkte: ' + scorePlayer1;
-  } else {
-    document.getElementById('scorePlayer1').innerHTML = 'Punkte ' + player1 + ': ' + scorePlayer1;
-  }
-  var player2 = document.getElementById("player2").value;
-  if (!player2) {
-    document.getElementById('scorePlayer2').innerHTML = 'Punkte: ' + scorePlayer2;
-  } else {
-    document.getElementById('scorePlayer2').innerHTML = 'Punkte ' + player2 + ': ' + scorePlayer2;
-  }
+  document.getElementById('spielstand').innerHTML = scorePlayer1 + " : " + scorePlayer2;
 }
 
 function resetVerdoppler() {
@@ -429,18 +418,7 @@ function initAugenPlayer() {
 }
 
 function initScorePlayer() {
-  var player1 = document.getElementById("player1").value;
-  if (!player1) {
-    document.getElementById('scorePlayer1').innerHTML = 'Punkte:  ' + scorePlayer1;
-  } else {
-    document.getElementById('scorePlayer1').innerHTML = 'Punkte ' + player1 +': ' + scorePlayer1;
-  }
-  var player2 = document.getElementById("player2").value;
-  if (!player2) {
-    document.getElementById('scorePlayer2').innerHTML = 'Punkte:  ' + scorePlayer2;
-  } else {
-    document.getElementById('scorePlayer2').innerHTML = 'Punkte ' + player2 +': ' + scorePlayer2;
-  }
+    document.getElementById('spielstand').innerHTML = scorePlayer1 + " : " + scorePlayer2;
 }
 
 function initVerdopplerPossession() {
@@ -450,7 +428,6 @@ function initVerdopplerPossession() {
 function onchangePlayer(player) {
   var playerName = document.getElementById("player" + player).value;
   document.getElementById('augenPlayer' + player).innerHTML = "Augen " + playerName + ": " + window["punktePlayer" + player];
-  document.getElementById('scorePlayer' + player).innerHTML = "Punkte " + playerName + ": " + window["scorePlayer" + player];
   document.getElementById('player' + player + 'Wins').value = playerName + " gewinnt";
   document.getElementById('player' + player + 'AcceptsVerdoppler').value = playerName + " akz. Verdoppler";
 }
