@@ -145,3 +145,4 @@ buttonWurfTransparent
 input[type="number"] {
    width:40px;
 }
+.hide { position:absolute; top:342px; left:1325px; width:200px; height:55px; border:none }

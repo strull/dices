@@ -418,7 +418,7 @@ function initAugenPlayer() {
 }
 
 function initScorePlayer() {
-    document.getElementById('spielstand').innerHTML = scorePlayer1 + " : " + scorePlayer2;
+  document.getElementById('spielstand').innerHTML = scorePlayer1 + " : " + scorePlayer2;
 }
 
 function initVerdopplerPossession() {
@@ -432,6 +432,11 @@ function onchangePlayer(player) {
   document.getElementById('player' + player + 'AcceptsVerdoppler').value = playerName + " akz. Verdoppler";
 }
 
+function clearIframe() {
+  var iframe = document.getElementById('hiddenFrame');
+  iframe.src = "about:blank";
+}
+
 function neuesSpiel() {
   eyeChart.destroy();
   paschChart.destroy();
@@ -440,6 +445,7 @@ function neuesSpiel() {
   initVerdopplerPossession();
   drawEyeChart();
   drawPaschChart();
+  clearIframe();
   document.getElementById('normal').checked = true;
   document.getElementById('aktuellerWurf').innerHTML = "";
 }
@@ -448,6 +454,7 @@ function neuesMatch() {
   eyeChart.destroy();
   paschChart.destroy();
   scoreChart.destroy();
+  clearIframe();
   resetScore();
   resetGameAndStats();
   resetVerdoppler();

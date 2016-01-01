@@ -10,7 +10,8 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <body onload="onload()">
 <div class="head" name="head" id="head">
-  <form action="http://localhost/wuerfel/saveResult.pl" method="post" enctype="application/x-www-form-urlencoded" name="strullboss" target="_blank" >
+  <form action="http://localhost/wuerfel/saveResult.pl" method="post" target="hiddenFrame" enctype="application/x-www-form-urlencoded" name="strullboss" >
+  <iframe name="hiddenFrame" id="hiddenFrame" class="hide"></iframe>
     <label for="title" class="title">Backgammon Machine</label>
     <label for="copyright" class="text">&copy;E1, E8 (2015)</label><br><br>
     <img src="wuerfel.jpg" width="138" height="120" alt="Wuerfel"><br><br>
@@ -108,7 +109,7 @@
       ALT-x: Spieler1 akzeptiert Verdoppler<br>
       ALT-y: Spieler2 akzeptiert Verdoppler<br><br>
       <label for="dbInfo" class="text">
-        <button type="submit" title="ALT-s" accesskey="s">Spiel <u>s</u>peichern</button>&nbsp;&nbsp;
+	<button type="submit" title="ALT-s" accesskey="s">Spiel <u>s</u>peichern</button><br><br>
 	<a href="http://localhost/wuerfel/dbInfo.pl">DB infos</a><br><br>
 	<div id="ZeitBox01"><div id="ZeitAnzeige"></div></div>
       </label>
