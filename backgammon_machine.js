@@ -433,8 +433,7 @@ function onchangePlayer(player) {
 }
 
 function clearIframe() {
-  var iframe = document.getElementById('hiddenFrame');
-  iframe.src = "about:blank";
+  document.getElementById('hiddenFrame').src = "about:blank";
 }
 
 function neuesSpiel() {
@@ -446,6 +445,7 @@ function neuesSpiel() {
   drawEyeChart();
   drawPaschChart();
   clearIframe();
+  wurfHistorie = [];
   document.getElementById('normal').checked = true;
   document.getElementById('aktuellerWurf').innerHTML = "";
 }
@@ -462,6 +462,7 @@ function neuesMatch() {
   drawEyeChart();
   drawPaschChart();
   drawScoreChart();
+  wurfHistorie = [];
   document.getElementById('normal').checked = true;
   document.getElementById('aktuellerWurf').innerHTML = "";
 }
