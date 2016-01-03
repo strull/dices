@@ -20,6 +20,10 @@ var punktePlayer1 = 0;
 
 var punktePlayer2 = 0;
 
+var siegePlayer1 = 0;
+
+var siegePlayer2 = 0;
+
 var scorePlayer1 = 0;
 
 var scorePlayer2 = 0;
@@ -220,7 +224,9 @@ function playerwins(player) {
     } else {
       scorePlayer1 = scorePlayer1 + verdoppler;
     }
+    siegePlayer1++;
     var player1 = document.getElementById("player1").value;
+    document.getElementById('siegePlayer1').innerHTML = 'Siege ' + player1 + ': ' + siegePlayer1;
     document.getElementById('spielstand').innerHTML = scorePlayer1 + " : " + scorePlayer2;
     if (scorePlayer1 >= punkte) {
       alert("Game over! " + player1 + " gewinnt.");
@@ -238,7 +244,9 @@ function playerwins(player) {
     } else {
       scorePlayer2 = scorePlayer2 + verdoppler;
     }
+    siegePlayer2++;
     var player2 = document.getElementById("player2").value;
+    document.getElementById('siegePlayer2').innerHTML = 'Siege ' + player2 + ': ' + siegePlayer2;
     document.getElementById('spielstand').innerHTML = scorePlayer1 + " : " + scorePlayer2;
     if (scorePlayer2 >= punkte) {
       alert("Game over! " + player2 + " gewinnt.");
@@ -417,6 +425,22 @@ function initAugenPlayer() {
   }
 }
 
+function initSiegePlayer() {
+  siegePlayer1 = siegePlayer2 = 0;
+  var player1 = document.getElementById("player1").value;
+  if (!player1) {
+    document.getElementById('siegePlayer1').innerHTML = 'Siege:  ' + siegePlayer1;
+  } else {
+    document.getElementById('siegePlayer1').innerHTML = 'Siege ' + player1 +': ' + siegePlayer1;
+  }
+  var player2 = document.getElementById("player2").value;
+  if (!player2) {
+    document.getElementById('siegePlayer2').innerHTML = 'Siege:  ' + siegePlayer2;
+  } else {
+    document.getElementById('siegePlayer2').innerHTML = 'Siege ' + player2 +': ' + siegePlayer2;
+  }
+}
+
 function initScorePlayer() {
   document.getElementById('spielstand').innerHTML = scorePlayer1 + " : " + scorePlayer2;
 }
@@ -428,6 +452,7 @@ function initVerdopplerPossession() {
 function onchangePlayer(player) {
   var playerName = document.getElementById("player" + player).value;
   document.getElementById('augenPlayer' + player).innerHTML = "Augen " + playerName + ": " + window["punktePlayer" + player];
+  document.getElementById('siegePlayer' + player).innerHTML = "Siege " + playerName + ": " + window["siegePlayer" + player];
   document.getElementById('player' + player + 'Wins').value = playerName + " gewinnt";
   document.getElementById('player' + player + 'AcceptsVerdoppler').value = playerName + " akz. Verdoppler";
 }
@@ -459,6 +484,7 @@ function neuesMatch() {
   resetGameAndStats();
   resetVerdoppler();
   initVerdopplerPossession();
+  initSiegePlayer();
   drawEyeChart();
   drawPaschChart();
   drawScoreChart();
@@ -472,6 +498,7 @@ function onload() {
   drawEyeChart();
   initAugenPlayer();
   initScorePlayer();
+  initSiegePlayer();
   initVerdopplerPossession();
   drawPaschChart();
   drawScoreChart();
