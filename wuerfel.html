@@ -11,7 +11,7 @@
 <body onload="onload()">
 <div class="head" name="head" id="head">
   <form action="http://localhost/wuerfel/saveResult.pl" method="post" target="hiddenFrame" enctype="application/x-www-form-urlencoded" name="strullboss" >
-  <iframe name="hiddenFrame" id="hiddenFrame" class="hide"></iframe>
+    <iframe name="hiddenFrame" id="hiddenFrame" class="hide"></iframe>
     <label for="title" class="title">Backgammon Machine</label>
     <label for="copyright" class="text">&copy;E1, E8 (2015)</label><br><br>
     <img src="wuerfel.jpg" width="138" height="120" alt="Wuerfel"><br><br>
@@ -48,49 +48,61 @@
       </label>
       <input class="buttonTransparent" type="button" title="ALT-v" accesskey="v" value="" onclick="verdoppeln()">
       <p id="verdoppler"></p>
-    <div class="verdoppplerButtons" name="verdoppplerButtons" id="verdoppplerButtons">
-      <input class="buttonNormal" type="button" id="player1AcceptsVerdoppler" title="ALT-x" accesskey="x" value="Spieler1 akz. Verdoppler" onclick="playerAcceptsVerdoppler(1)">
-      <br><br>
-      <input class="buttonNormal" type="button" id="player2AcceptsVerdoppler" title="ALT-y" accesskey="y" value="Spieler2 akz. Verdoppler" onclick="playerAcceptsVerdoppler(2)">
-      <br><br>
-      <input class="buttonNormal" type="button" title="ALT-h" accesskey="h" value="Verdoppler ablehnen" onclick="halfVerdoppeln()"><br><br>
-    </div>
+      <div class="verdoppplerButtons" name="verdoppplerButtons" id="verdoppplerButtons">
+	<input class="buttonNormal" type="button" id="player1AcceptsVerdoppler" title="ALT-x" accesskey="x" value="Spieler1 akz. Verdoppler" onclick="playerAcceptsVerdoppler(1)">
+	<br><br>
+	<input class="buttonNormal" type="button" id="player2AcceptsVerdoppler" title="ALT-y" accesskey="y" value="Spieler2 akz. Verdoppler" onclick="playerAcceptsVerdoppler(2)">
+	<br><br>
+	<input class="buttonNormal" type="button" title="ALT-h" accesskey="h" value="Verdoppler ablehnen" onclick="halfVerdoppeln()"><br><br>
+      </div>
       <label for="Verdoppler" class="text">
-      <p id="verdopplerPossession"></p>
+	<p id="verdopplerPossession"></p>
 	Spiel endet...<br>
-      <input type="Radio" id="normal" checked="true" name="gammon" accesskey="r"> no<u>r</u>mal 
-      <input type="Radio" id="gammon" name="gammon" accesskey="a"> g<u>a</u>mmon 
-      <input type="Radio" id="backgammon" name="gammon" accesskey="b"> <u>b</u>ackgammon<br>
-    </label><br>
-      <input class="buttonNormal" type="button" id="player1Wins" title="ALT-o" accesskey="o" value="Spieler1 gewinnt" onclick="playerwins(1)">
-      <input class="buttonNormal" type="button" id="player2Wins" title="ALT-t" accesskey="t" value="Spieler2 gewinnt" onclick="playerwins(2)">
+	<input type="Radio" id="normal" checked="true" name="gammon" accesskey="r"> no<u>r</u>mal 
+	<input type="Radio" id="gammon" name="gammon" accesskey="a"> g<u>a</u>mmon 
+	<input type="Radio" id="backgammon" name="gammon" accesskey="b"> <u>b</u>ackgammon<br>
+      </label><br>
+      <table width="360">
+	<tr><td width="120"> <input type="button" id="player1Wins" title="ALT-o" accesskey="o" value="Spieler1 gewinnt" onclick="playerwins(1)"> </td><td width="120"></td><td width="120"> <input type="button" id="player2Wins" title="ALT-t" accesskey="t" value="Spieler2 gewinnt" onclick="playerwins(2)">
+	</td></tr>
+	<tr>
+	  <th align=center><p id="scorePlayer1"></p></th>
+	  <th>Spielstand</th>
+	  <th align=center><p id="scorePlayer2"></p></th>
+	</tr>
+	<tr>
+	  <th><p id="siegePlayer1" class="text"></p></th>
+	  <th>Siege</th>
+	  <th><p id="siegePlayer2" class="text"></p></th>
+	</tr>
+	<tr>
+	  <th><p id="augenPlayer1" class="text"></p></th>
+	  <th>Augen</th>
+	  <th><p id="augenPlayer2" class="text"></p></th>
+	</tr>
+	<tr>
+	  <th><p id="paschsPlayer1" class="text"></p></th>
+	  <th>Paschs</th>
+	  <th><p id="paschsPlayer2" class="text"></p></th>
+	</tr>
+      </table>
       <br>
-      <p id="siegePlayer1" class="text"></p>
-      <p id="siegePlayer2" class="text"></p>
-      <label for="scoreChart" class="chartTitle">
-	Spielstand<br>
-      <label for="spielstand" class="spielstand">
-      <p id="spielstand"></p>
-    </label>
-      <input type="hidden" name="scorePlayer1hidden" >
-      <input type="hidden" name="scorePlayer2hidden" >
-	<canvas id="scoreChart" width="250" height="250"></canvas>
-      </label><br><br>
     </div>
     <div class="statistik" name="statistik" id="statistik">
       <label for = "eyeChart" class="chartTitle">
 	Augen<br>
-	<canvas id="eyeChart" width="400" height="400"></canvas>
+	<canvas id="eyeChart" width="350" height="350"></canvas>
       </label>
-      <p id="augenPlayer1" class="text"></p>
-      <p id="augenPlayer2" class="text"></p>
-      <label for = "paschChart" class="chartTitle">
-	Paschs<br>
-	<canvas id="paschChart" width="250" height="250"></canvas>
-      </label><br>
+      <br><br>
+      <label for="scoreChart" class="chartTitle">
+      Spielstand<br>
+      <input type="hidden" name="scorePlayer1hidden" >
+      <input type="hidden" name="scorePlayer2hidden" >
+      <canvas id="scoreChart" width="350" height="350"></canvas>
+      </label>
     </div>
     <div class="legend" name="legend" id="legend">
-	<div id="js-legend" class="chart-legend"></div>
+      <div id="js-legend" class="chart-legend"></div>
     </div>
     <div class="legendAccesskeys" name="legendAccesskeys" id="legendAccesskeys">
       <b>Hinweis</b><br>
