@@ -32,8 +32,6 @@ var eyeChart;
 
 var scoreChart;
 
-var paschChart;
-
 var round = 0;
 
 var Wochentag = new Array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
@@ -405,7 +403,6 @@ function neuesSpiel() {
   initVerdopplerPossession();
   initPaschsPlayer();
   drawEyeChart();
-  drawPaschChart();
   clearIframe();
   wurfHistorie = [];
   document.getElementById('normal').checked = true;
